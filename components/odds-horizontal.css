@@ -1,0 +1,82 @@
+/* =============================================================
+   odds-horizontal.css
+   Odds (horizontal) — IW Design Library (ReDesign 2026)
+   Source: Figma "OddsHorizontal" component set (node 358:22096)
+   States: Default · Selected · Locked · Odds up · Odds down
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg      → --intent-brand-bg      #ffd200
+   intent/success/base  → --intent-success-base  #2ea949
+   intent/danger/base   → --intent-danger-base   #bb1b1b
+   text/primary         → --text-primary         #000000
+   surface/subtle*      → --surface-subtle       #eef1f5
+
+   * In Figma the default background was a raw hex (#eef1f5), not the
+     surface/subtle token — even though the value is identical. Mapped
+     to the token here for consistency; see the design-system notes.
+   Raw, un-tokenized colors from the design are marked "raw" below.
+   ============================================================= */
+
+.odds-horizontal {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  /* width is grid/layout-specific (sampled instance was ~101px) — set it
+     on the parent or a modifier, not here. */
+}
+
+.odds-horizontal__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #6b7480; /* raw — no token in Figma */
+}
+
+.odds-horizontal__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #101a28; /* raw — no token in Figma */
+}
+
+.odds-horizontal__lock {
+  width: 13px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* Selected */
+.odds-horizontal--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
+.odds-horizontal--selected .odds-horizontal__label,
+.odds-horizontal--selected .odds-horizontal__value {
+  color: var(--text-primary, #000000);
+}
+
+/* Odds up — 2px accent on the top edge */
+.odds-horizontal--up {
+  border-top: 2px solid var(--intent-success-base, #2ea949);
+}
+.odds-horizontal--up .odds-horizontal__value {
+  color: #3bba00; /* raw — differs from --intent-success-base; see notes */
+}
+
+/* Odds down — 2px accent on the bottom edge */
+.odds-horizontal--down {
+  border-bottom: 2px solid var(--intent-danger-base, #bb1b1b);
+}
+.odds-horizontal--down .odds-horizontal__value {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Locked */
+.odds-horizontal--locked .odds-horizontal__value {
+  color: #a2aab6; /* raw — no token in Figma */
+}

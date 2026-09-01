@@ -1,0 +1,57 @@
+/* =============================================================
+   verified-badge.css
+   Verified / Unverified badge — IW Design Library (ReDesign 2026)
+   Source: Figma "Badges" component set (node 370:23212)
+   States: Verified · Unverified
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/success/bg     → --intent-success-bg     #f0fbf3
+   intent/success/border → --intent-success-border #a4e6b3
+   intent/success/fg     → --intent-success-fg     #1c652c
+   intent/danger/bg      → --intent-danger-bg      #fdf3f3
+   intent/danger/border  → --intent-danger-border  #f1b4b4
+   intent/danger/base    → --intent-danger-base    #bb1b1b
+
+   Note: the verified text uses intent/success/fg, but the unverified text
+   uses intent/danger/base (there is no intent/danger/fg token). See notes.
+   Icon is an exported SVG — size it with .badge__icon.
+
+   Markup this expects:
+     <span class="badge badge--verified">
+       <svg class="badge__icon">…</svg>Verified
+     </span>
+   ============================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.badge__icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Verified */
+.badge--verified {
+  background-color: var(--intent-success-bg, #f0fbf3);
+  border-color: var(--intent-success-border, #a4e6b3);
+  color: var(--intent-success-fg, #1c652c);
+}
+
+/* Unverified */
+.badge--unverified {
+  background-color: var(--intent-danger-bg, #fdf3f3);
+  border-color: var(--intent-danger-border, #f1b4b4);
+  color: var(--intent-danger-base, #bb1b1b);
+}

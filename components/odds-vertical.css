@@ -1,0 +1,81 @@
+/* =============================================================
+   odds-vertical.css
+   Odds (vertical) — IW Design Library (ReDesign 2026)
+   Source: Figma "OddsVertical" component set (node 358:22090)
+   States: Default · Selected · Locked · Odds up · Odds down
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg      → --intent-brand-bg      #ffd200
+   intent/success/base  → --intent-success-base  #2ea949
+   intent/danger/base   → --intent-danger-base   #bb1b1b
+   text/primary         → --text-primary         #000000
+   surface/subtle*      → --surface-subtle       #eef1f5
+
+   * Default background is a raw hex in Figma (#eef1f5); mapped to the
+     token here for consistency. Raw, un-tokenized colors are marked below.
+   ============================================================= */
+
+.odds-vertical {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 8px 0;
+  border-radius: 10px; /* note: horizontal variant uses 8px — see notes */
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  /* width is grid/layout-specific (sampled instance was 96px). */
+}
+
+.odds-vertical__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #6b7480; /* raw — no token in Figma */
+}
+
+.odds-vertical__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #101a28; /* raw — no token in Figma */
+}
+
+.odds-vertical__lock {
+  width: 13px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* Selected */
+.odds-vertical--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
+.odds-vertical--selected .odds-vertical__label,
+.odds-vertical--selected .odds-vertical__value {
+  color: var(--text-primary, #000000);
+}
+
+/* Odds up — 2px accent on the top edge */
+.odds-vertical--up {
+  border-top: 2px solid var(--intent-success-base, #2ea949);
+}
+.odds-vertical--up .odds-vertical__value {
+  color: var(--intent-success-base, #2ea949);
+}
+
+/* Odds down — 2px accent on the bottom edge */
+.odds-vertical--down {
+  border-bottom: 2px solid var(--intent-danger-base, #bb1b1b);
+}
+.odds-vertical--down .odds-vertical__value {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Locked */
+.odds-vertical--locked .odds-vertical__value {
+  color: #a2aab6; /* raw — no token in Figma */
+}

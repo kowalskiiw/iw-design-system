@@ -1,0 +1,121 @@
+/* =============================================================
+   dropdown.css
+   Dropdown / select field — IW Design Library (ReDesign 2026)
+   Source: Figma "InputDropdown" component set (node 343:21454)
+   States: Enabled · Focused · Open · Error · Disabled  ×  Empty / Filled
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   field/border        → --field-border        #c3c3c3
+   field/bg-disabled   → --field-bg-disabled   #f1f1f1
+   text/primary        → --text-primary        #000000
+   text/value          → --text-value          #333333
+   text/placeholder    → --text-placeholder    #939393
+   intent/danger/base  → --intent-danger-base  #bb1b1b
+   focus/ring          → --focus-ring          #2194ff
+
+   Markup this expects:
+     <div class="dropdown">
+       <label class="dropdown__label">Label</label>
+       <button class="dropdown__field" type="button">
+         <span class="dropdown__value dropdown__value--placeholder">Please select...</span>
+         <svg class="dropdown__icon">…chevron…</svg>
+       </button>
+       <p class="dropdown__helper">Text message</p>
+     </div>
+   Drop dropdown__value--placeholder when a value is chosen. Add --open,
+   --error, or --disabled on .dropdown for those states.
+   ============================================================= */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+}
+
+.dropdown__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.dropdown__field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--field-border, #c3c3c3);
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown__value {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+.dropdown__value--placeholder {
+  color: var(--text-placeholder, #939393);
+}
+
+.dropdown__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.dropdown__helper {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.dropdown__lock {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Focused — adds the 2px ring, keeps the grey border (matches Figma) */
+.dropdown__field:focus-within,
+.dropdown--focused .dropdown__field {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Open — in Figma the chevron swaps to "up". If you use a single chevron
+   asset, this flips it; if you swap SVGs in markup, remove this rule. */
+.dropdown--open .dropdown__icon {
+  transform: rotate(180deg);
+}
+
+/* Error */
+.dropdown--error .dropdown__field {
+  border-color: var(--intent-danger-base, #bb1b1b);
+}
+.dropdown--error .dropdown__helper {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Disabled */
+.dropdown--disabled .dropdown__field {
+  background-color: var(--field-bg-disabled, #f1f1f1);
+  border-color: var(--field-border, #c3c3c3);
+  cursor: not-allowed;
+}
+.dropdown--disabled .dropdown__value {
+  color: var(--text-placeholder, #939393);
+}

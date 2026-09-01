@@ -1,0 +1,46 @@
+/* =============================================================
+   chip.css
+   Chip — IW Design Library (ReDesign 2026)
+   Source: Figma "Chip" component set (node 361:22983)
+   States: Default · Hover
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/subtle → --surface-subtle → #eef1f5
+
+   The default white background and the text color (#101a28) are raw
+   hex values in Figma — no token. Icon is an exported SVG; size it with
+   .chip__icon and drop the <svg>/<img> in.
+   ============================================================= */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background-color: #ffffff; /* raw — no surface/default token in Figma */
+  box-shadow: 0 1px 1px rgba(16, 26, 40, 0.06);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+/* Hover — :hover for real interaction, --hover to force the state */
+.chip:hover,
+.chip--hover {
+  background-color: var(--surface-subtle, #eef1f5);
+}
+
+.chip__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.chip__label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #101a28; /* raw — no token in Figma */
+}
