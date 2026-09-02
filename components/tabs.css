@@ -1,0 +1,47 @@
+/* =============================================================
+   tabs.css
+   Tab item — IW Design Library (ReDesign 2026)
+   Source: Figma "Tabs" component (node 1:1006)
+   States: Default · Selected (Figma property1: Default · Variant2)
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary  → --content-secondary  #6b7480
+   content/heading    → --content-heading    #101a28
+   intent/brand/bg    → --intent-brand-bg    #ffd200
+
+   This is a single tab item, not a tab bar — Figma only defines one
+   tab's two states (unselected / selected). Place several side by side
+   (e.g. in a flex row) to build a tab bar; each tab manages its own
+   .tabs--selected state independently.
+
+   Markup this expects:
+     <div class="tabs tabs--selected">
+       <span class="tabs__label">Bet builder</span>
+     </div>
+   ============================================================= */
+
+.tabs {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 30px;
+  padding: 0 8px 8px;
+  cursor: pointer;
+}
+
+.tabs__label {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--content-secondary, #6b7480);
+}
+
+/* Selected — Figma property1: Variant2 */
+.tabs--selected {
+  border-bottom: 3px solid var(--intent-brand-bg, #ffd200);
+}
+.tabs--selected .tabs__label {
+  color: var(--content-heading, #101a28);
+}
