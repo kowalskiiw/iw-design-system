@@ -1,0 +1,109 @@
+/* =============================================================
+   secondary-button.css
+   Secondary Button — IW Design Library (ReDesign 2026)
+   Source: Figma "Secondary Buttons" component set (node 1:732)
+   States: Default · Hover · Clicked/Pressed · Focused · Disabled · Loading
+
+   DESIGN TOKENS
+   Figma variable         →  CSS custom property     (value)
+   text/primary           →  --text-primary          (#000000)
+   text/secondary         →  --text-secondary        (#535353)
+   text/placeholder       →  --text-placeholder      (#939393)
+   intent/brand/fg        →  --intent-brand-fg       (#000000)
+   focus/ring             →  --focus-ring            (#2194FF)
+
+   Each rule references the token with the Figma value as a fallback, so
+   this file works standalone AND picks up tokens/semantic.css (colors)
+   and tokens/type.css (type scale) when they're loaded. If your exported
+   token names differ (slashes are usually flattened to hyphens by the
+   exporter), rename the custom properties below to match.
+
+   This is a single-size, outline-style button — border only, no fill,
+   and no Big/Small modifier like button.css. Border color and label
+   color both change per state; padding only changes for Loading.
+   ============================================================= */
+
+.secondary-button {
+  /* layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+
+  /* shape */
+  border: 1px solid var(--text-primary, #000000);
+  border-radius: 42px;
+  background: transparent;
+
+  /* typography */
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  /* color */
+  color: var(--intent-brand-fg, #000000);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover */
+.secondary-button:hover {
+  border-color: var(--text-secondary, #535353);
+  color: var(--text-secondary, #535353);
+}
+
+/* Clicked/Pressed — Figma shows no visual change from Default (same
+   border and label color); the browser's own :active affordance is
+   enough, no rule needed. */
+
+/* Focused (keyboard only) — 2px ring that follows the pill shape.
+   :focus-visible keeps it off mouse clicks and on for keyboard nav.
+   Figma draws this as a separate absolute overlay (inset -1px, 26px
+   radius); the inset box-shadow below produces the same ring at the
+   button's own 42px radius instead, matching the convention used
+   elsewhere in this design system (see button.css). */
+.secondary-button:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Disabled */
+.secondary-button:disabled,
+.secondary-button[aria-disabled="true"] {
+  border-color: var(--text-placeholder, #939393);
+  color: var(--text-placeholder, #939393);
+  cursor: not-allowed;
+}
+
+/* Loading
+   Vertical padding drops from 6px to 4px so the 24px spinner doesn't
+   push the button taller than its resting height. Markup pairs
+   .secondary-button__spinner with a plain "Loading" text label beside
+   it, with a 10px gap between them (per Figma) — e.g. `<span
+   class="secondary-button__spinner"></span>Loading`. */
+.secondary-button--loading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  gap: 10px;
+  cursor: progress;
+}
+
+/* CSS fallback spinner. The real component uses an exported SVG glyph —
+   drop that in as an <svg>/icon if you want an exact match; this keyframe
+   version is here so secondary-button.css has no asset dependency. */
+.secondary-button__spinner {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: secondary-button-spin 0.6s linear infinite;
+}
+
+@keyframes secondary-button-spin {
+  to { transform: rotate(360deg); }
+}
