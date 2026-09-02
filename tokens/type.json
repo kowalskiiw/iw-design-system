@@ -1,0 +1,220 @@
+{
+  "Font Family": {
+    "Inter": {
+      "$type": "string",
+      "$value": "Inter",
+      "$description": "Font Family variable for Inter",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47703",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ],
+        "com.figma.type": "string"
+      }
+    }
+  },
+  "Font Size": {
+    "12": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "Font Size variable for 12",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47708",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "14": {
+      "$type": "number",
+      "$value": 14,
+      "$description": "Font Size variable for 14",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47705",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "16": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "Font Size variable for 16",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47707",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "20": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "Font Size variable for 20",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47706",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "24": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "Font Size variable for 24",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47704",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Font Weight": {
+    "regular": {
+      "$type": "number",
+      "$value": 400,
+      "$description": "Font Weight variable for regular",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47709",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "medium": {
+      "$type": "number",
+      "$value": 500,
+      "$description": "Font Weight variable for medium",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47710",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Letter Spacing": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Letter Spacing variable for 0",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47711",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Line Height": {
+    "16": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "Line Height variable for 16",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47715",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "20": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "Line Height variable for 20",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47714",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "24": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "Line Height variable for 24",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47713",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "28": {
+      "$type": "number",
+      "$value": 28,
+      "$description": "Line Height variable for 28",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47712",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Paragraph Spacing": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Paragraph Spacing variable for 0",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47716",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "20": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "Paragraph Spacing variable for 20",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47717",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "Paragraph Indent": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "Paragraph Indent variable for 0",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47718",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "List Spacing": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "List Spacing variable for 0",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47719",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
+    "2": {
+      "$type": "number",
+      "$value": 2,
+      "$description": "List Spacing variable for 2",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:592:47720",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}
