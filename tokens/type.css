@@ -1,0 +1,20 @@
+:root {
+  --Font Family-Inter: Inter;
+  --Font Size-12: 12;
+  --Font Size-14: 14;
+  --Font Size-16: 16;
+  --Font Size-20: 20;
+  --Font Size-24: 24;
+  --Font Weight-regular: 400;
+  --Font Weight-medium: 500;
+  --Letter Spacing-0: 0;
+  --Line Height-16: 16;
+  --Line Height-20: 20;
+  --Line Height-24: 24;
+  --Line Height-28: 28;
+  --Paragraph Spacing-0: 0;
+  --Paragraph Spacing-20: 20;
+  --Paragraph Indent-0: 0;
+  --List Spacing-0: 0;
+  --List Spacing-2: 2;
+}
