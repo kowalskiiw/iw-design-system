@@ -16,6 +16,16 @@
    loaded. If your exported token names differ (slashes are usually
    flattened to hyphens by the exporter), rename the custom properties
    below to match.
+
+   Sizes: Big (default — 32px/12px padding, 16px font) and Small (16px/6px
+   padding, 14px font) via .button--small. Both share the same 42px pill
+   radius, inherited from .button.
+
+   Loading markup: Figma pairs the spinner with a visible "Loading" text
+   label next to it, not just the spinner alone — e.g. `<span
+   class="button__spinner"></span>Loading`. The label is a plain text node
+   so it picks up size/weight from .button (or .button--small) directly,
+   no separate class needed.
    ============================================================= */
 
 .button {
@@ -43,6 +53,14 @@
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Small size — 16px/6px padding, 14px type, same 42px pill radius as Big
+   (inherited from .button). Combine as class="button button--small". */
+.button--small {
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 /* Hover */
@@ -75,12 +93,21 @@
 }
 
 /* Loading
-   Vertical padding drops from 12px to 10px so the 24px spinner doesn't
-   push the button taller than its resting height. */
+   Big: vertical padding drops from 12px to 10px so the 24px spinner
+   doesn't push the button taller than its resting height. Markup pairs
+   .button__spinner with a plain "Loading" text label beside it, matching
+   Figma — see the header note above. */
 .button--loading {
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: progress;
+}
+
+/* Small + Loading — same trim, scaled down: 6px vertical padding drops to
+   4px so the spinner doesn't grow the small button's height. */
+.button--small.button--loading {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 /* CSS fallback spinner. The real component uses an exported SVG glyph —
