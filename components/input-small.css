@@ -1,0 +1,53 @@
+/* =============================================================
+   input-small.css
+   Small input — IW Design Library (ReDesign 2026)
+   Source: Figma "Input Small" component (node 1:1013)
+   States: Default only — Figma defines this as a single fixed component,
+   not a variant set, so there's no Enabled/Focused/Error/Disabled or
+   Empty/Filled axis to implement here (unlike input.css's "InputText"
+   component set).
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   text/secondary  → --text-secondary  #535353
+
+   Figma binds both the border and the text colour to text/secondary —
+   this component doesn't reference the field/border, text/value, or
+   text/placeholder tokens that input.css uses. It reads as a visually
+   distinct, compact pattern (right-aligned value in a tight box, e.g. an
+   inline stake field), not simply a smaller InputText.
+
+   Markup this expects:
+     <div class="input-small">
+       <span class="input-small__value">Stake</span>
+     </div>
+   No label, helper text, or states are defined on the Figma component.
+   It also has no trailing/visibility icon — left out here rather than
+   copying Input - Text's icon slot, since that slot's API (generic icon
+   vs. password-visibility toggle) is still an open question there; revisit
+   this file once that's settled.
+   ============================================================= */
+
+.input-small {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--text-secondary, #535353);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  /* width is layout-specific (sampled instance was 98px) — set it on the
+     parent or a modifier, not here. */
+}
+
+.input-small__value {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-secondary, #535353);
+}
