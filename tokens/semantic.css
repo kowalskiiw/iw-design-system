@@ -4,6 +4,7 @@
   --intent-brand-bg-pressed: #CCA800;
   --intent-brand-fg: #000000;
   --intent-danger-base: #BB1B1B;
+  --intent-danger-base-lighter: #D93A2B;
   --intent-danger-bg: #FDF3F3;
   --intent-danger-border: #F1B4B4;
   --intent-success-base: #2EA949;
@@ -21,10 +22,12 @@
   --field-icon-disabled: #979797;
   --surface-base: #FFFFFF;
   --surface-subtle: #EEF1F5;
+  --content-bg-betslip: #181E26;
   --content-heading: #101A28;
   --content-body: #5A6472;
   --content-secondary: #6B7480;
   --content-muted: #A2AAB6;
   --border-subtle: #CBD3DE;
   --border-strong: #424242;
+  --green-betbuilder: #A8CF1E;
 }
