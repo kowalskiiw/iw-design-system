@@ -1,0 +1,254 @@
+/* =============================================================
+   bet-element.css
+   Bet card — IW Design Library (ReDesign 2026)
+   Source: Figma "Bet-element" component set (node 1:870)
+   Variants: Live · Default
+
+   DESIGN TOKENS
+   Figma variable              →  CSS custom property         (value)
+   intent/danger/base-lighter  →  --intent-danger-base-lighter (#D93A2B)
+   content/secondary           →  --content-secondary          (#6B7480)
+   content/heading             →  --content-heading             (#101A28)
+   intent/brand/bg             →  --intent-brand-bg             (#FFD200)
+   surface/subtle              →  --surface-subtle              (#EEF1F5)
+   text/primary                →  --text-primary                (#000000)
+
+   Two colours are genuinely raw in Figma with no matching token
+   (checked tokens/semantic.css): the date-chip background #f1f3f7 and
+   its divider #c8d0db. Hardcoded below.
+
+   Two others — the date chip's "Today" (#6b7480) and "21:15" (#101a28)
+   text — are ALSO left raw by Figma, but they exactly match
+   content/secondary and content/heading, and other text in this same
+   component (the league name) IS bound to those tokens. That reads like
+   an authoring gap rather than intentional, so they're tokenized here
+   for consistency — flag to design if that's wrong.
+
+   REUSE, DON'T RESTYLE: the three odds boxes at the bottom are literally
+   named "Odds - vertical" in Figma and match odds-vertical.css exactly
+   (surface/subtle bg, content/secondary label, text/primary value, 10px
+   radius, ~96px width) — reuse .odds-vertical / .odds-vertical__label /
+   .odds-vertical__value as-is; this file only adds the 3-column grid
+   wrapper around them. Team jersey icons and the soccer/league icon are
+   dropped-in assets, not re-styled here.
+
+   Markup this expects:
+     Live:
+       <div class="bet-element bet-element--live">
+         <div class="bet-element__meta">
+           <span class="bet-element__live-label">LIVE</span>
+           <span class="bet-element__live-clock">67′</span>
+           <span class="bet-element__meta-text">2nd Half</span>
+           <div class="bet-element__league">
+             <svg class="bet-element__league-icon">…soccer…</svg>
+             <span class="bet-element__league-name">Serie A</span>
+           </div>
+         </div>
+         <div class="bet-element__matchup">
+           <div class="bet-element__teams">
+             <div class="bet-element__team">
+               <svg class="bet-element__team-icon">…shirt…</svg>
+               <span class="bet-element__team-name">Atalanta Bergamasca Calcio</span>
+             </div>
+             <div class="bet-element__team">
+               <svg class="bet-element__team-icon">…shirt…</svg>
+               <span class="bet-element__team-name">Società Sportiva Lazio Roma</span>
+             </div>
+           </div>
+           <div class="bet-element__score"><span>2</span><span>1</span></div>
+         </div>
+         <div class="bet-element__odds">
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">1</span>
+             <span class="odds-vertical__value">4.20</span>
+           </div>
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">X</span>
+             <span class="odds-vertical__value">3.85</span>
+           </div>
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">2</span>
+             <span class="odds-vertical__value">6.50</span>
+           </div>
+         </div>
+       </div>
+
+     Default — drop the LIVE/clock/score, swap in the date chip:
+       <div class="bet-element bet-element--default">
+         <div class="bet-element__meta">
+           <div class="bet-element__date-chip">
+             <span class="bet-element__date-chip-text bet-element__date-chip-text--day">Today</span>
+             <span class="bet-element__date-chip-divider"></span>
+             <span class="bet-element__date-chip-text bet-element__date-chip-text--time">21:15</span>
+           </div>
+           <div class="bet-element__league">
+             <svg class="bet-element__league-icon">…soccer…</svg>
+             <span class="bet-element__league-name">Serie A</span>
+           </div>
+         </div>
+         <div class="bet-element__matchup"> … same teams, no .bet-element__score … </div>
+         <div class="bet-element__odds"> … same 3 .odds-vertical boxes … </div>
+       </div>
+   Width is layout-specific (sampled instance was 336px) — set it on the
+   parent, not here.
+   ============================================================= */
+
+.bet-element {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 16px;
+  font-family: "Inter", sans-serif;
+}
+
+.bet-element__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding-bottom: 8px;
+}
+.bet-element--default .bet-element__meta {
+  padding-bottom: 1px;
+}
+
+.bet-element__live-label,
+.bet-element__live-clock {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--intent-danger-base-lighter, #d93a2b);
+  white-space: nowrap;
+}
+
+.bet-element__meta-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.bet-element__date-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: #f1f3f7; /* raw — no matching token in Figma */
+}
+
+.bet-element__date-chip-text {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.bet-element__date-chip-text--day {
+  color: var(--content-secondary, #6b7480); /* raw in Figma, tokenized — see header note */
+}
+.bet-element__date-chip-text--time {
+  color: var(--content-heading, #101a28); /* raw in Figma, tokenized — see header note */
+}
+
+.bet-element__date-chip-divider {
+  width: 1px;
+  height: 10px;
+  background-color: #c8d0db; /* raw — no matching token in Figma */
+}
+
+.bet-element__league {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bet-element__league-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+/* Live's soccer icon is bigger than Default's (24px vs 16px) in Figma. */
+.bet-element--live .bet-element__league-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.bet-element__league-name {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.bet-element__matchup {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+.bet-element--default .bet-element__matchup {
+  min-height: 50px;
+}
+
+.bet-element__teams {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 2px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.bet-element__team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bet-element__team-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.bet-element__team-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+/* Live only — the running score badge beside the team names. */
+.bet-element__score {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+/* The three boxes inside reuse .odds-vertical from odds-vertical.css
+   as-is — this only supplies the grid they sit in. */
+.bet-element__odds {
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  gap: 8px;
+  width: 100%;
+  padding-top: 8px;
+}
