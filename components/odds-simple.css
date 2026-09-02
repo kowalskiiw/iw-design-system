@@ -1,0 +1,46 @@
+/* =============================================================
+   odds-simple.css
+   Odds (simple) — IW Design Library (ReDesign 2026)
+   Source: Figma "Odds - simple" component set (node 1:727)
+   States: Default · Selected (Figma property1: Default · Variant2)
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  #ffd200
+   text/primary     → --text-primary     #000000
+   surface/subtle   → --surface-subtle   #eef1f5
+
+   This is the simplest odds variant in the library: a single value, no
+   separate label, and no Locked / Odds up / Odds down states like
+   odds-horizontal.css and odds-vertical.css — Figma only defines two
+   states here, and the value colour doesn't change between them.
+   ============================================================= */
+
+.odds-simple {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 40px;
+  padding: 8px 0;
+  border-radius: 10px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+}
+
+.odds-simple__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary, #000000);
+  text-align: center;
+}
+
+/* Selected — Figma property1: Variant2. Background swaps to the brand
+   token; the value stays --text-primary in both states (no colour
+   change here, unlike the Selected state on the horizontal/vertical
+   siblings). */
+.odds-simple--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
