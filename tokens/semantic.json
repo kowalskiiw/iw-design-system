@@ -98,6 +98,25 @@
           ]
         }
       },
+      "base-lighter": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8509804010391235,
+            0.22745098173618317,
+            0.16862745583057404
+          ],
+          "alpha": 1,
+          "hex": "#D93A2B"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:591:46876",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
       "bg": {
         "$type": "color",
         "$value": {
@@ -434,6 +453,25 @@
     }
   },
   "content": {
+    "bg-betslip": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0941176488995552,
+          0.11764705926179886,
+          0.14901961386203766
+        ],
+        "alpha": 1,
+        "hex": "#181E26"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:591:68417",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    },
     "heading": {
       "$type": "color",
       "$value": {
@@ -545,6 +583,27 @@
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:381:24534",
+        "com.figma.scopes": [
+          "ALL_SCOPES"
+        ]
+      }
+    }
+  },
+  "green": {
+    "betbuilder": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.658823549747467,
+          0.8117647171020508,
+          0.11764705926179886
+        ],
+        "alpha": 1,
+        "hex": "#A8CF1E"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:591:46527",
         "com.figma.scopes": [
           "ALL_SCOPES"
         ]
