@@ -1,0 +1,111 @@
+/* =============================================================
+   method-item.css
+   Payment/verification method row — IW Design Library (ReDesign 2026)
+   Source: Figma "Method-item" component set (node 1:1506)
+   States: Default · Hover · Focused
+
+   DESIGN TOKENS
+   Figma variable    →  CSS custom property  (value)
+   surface/subtle    →  --surface-subtle     (#EEF1F5)
+   surface/base      →  --surface-base       (#FFFFFF)
+   text/value        →  --text-value         (#333333)
+   focus/ring        →  --focus-ring         (#2194FF)
+
+   Hover and Focused both use a raw #dee3ea background in Figma — no
+   token matches it (checked tokens/semantic.css: the closest are
+   --surface-subtle #eef1f5 and --border-subtle #cbd3de, neither the
+   same value), so it's hardcoded here rather than forced onto an
+   unrelated token.
+
+   This is a real interactive list row, not a persistent "selected"
+   state — Figma's Hover and Focused variants map directly onto mouse
+   hover and keyboard focus (Focused adds a visible 2px ring, exactly
+   like button.css's :focus-visible pattern, and at the same 14px
+   radius as the row itself), so both are implemented as real
+   pseudo-classes on .method-item rather than forced-state modifiers.
+
+   The row's leading logo and trailing chevron are dropped-in assets
+   (icon/image), not re-styled here — .method-item__logo and
+   .method-item__icon only provide the sizing/position slot.
+
+   Markup this expects:
+     <div class="method-item">
+       <div class="method-item__row">
+         <div class="method-item__logo"><img src="…" alt=""></div>
+         <div class="method-item__body">
+           <span class="method-item__title">ID Austria</span>
+           <span class="method-item__icon"><svg>…chevron…</svg></span>
+         </div>
+       </div>
+     </div>
+   Width is layout-specific (sampled instance was 336px) — set it on the
+   parent, not here.
+   ============================================================= */
+
+.method-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 64px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+/* Hover / Focused — real interaction, not a persistent selected state.
+   :focus-visible keeps the ring off mouse clicks and on for keyboard nav. */
+.method-item:hover,
+.method-item:focus-visible {
+  background-color: #dee3ea; /* raw — no matching token in Figma */
+  outline: none;
+}
+
+.method-item:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+.method-item__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.method-item__logo {
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: var(--surface-base, #ffffff);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.method-item__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.method-item__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+
+.method-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+}
