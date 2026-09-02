@@ -1,0 +1,27 @@
+{
+  "name": "iw-design-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kowalskiiw/iw-design-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kowalskiiw/iw-design-system/issues"
+  },
+  "homepage": "https://github.com/kowalskiiw/iw-design-system#readme",
+  "devDependencies": {
+    "@storybook/html-vite": "^10.5.10",
+    "storybook": "^10.5.10"
+  }
+}

@@ -1,0 +1,30 @@
+:root {
+  --intent-brand-bg: #FFD200;
+  --intent-brand-bg-hover: #ECC200;
+  --intent-brand-bg-pressed: #CCA800;
+  --intent-brand-fg: #000000;
+  --intent-danger-base: #BB1B1B;
+  --intent-danger-bg: #FDF3F3;
+  --intent-danger-border: #F1B4B4;
+  --intent-success-base: #2EA949;
+  --intent-success-bg: #F0FBF3;
+  --intent-success-border: #A4E6B3;
+  --intent-success-fg: #1C652C;
+  --focus-ring: #2194FF;
+  --text-primary: #000000;
+  --text-value: #333333;
+  --text-secondary: #535353;
+  --text-placeholder: #939393;
+  --text-strong: #292929;
+  --field-border: #C3C3C3;
+  --field-bg-disabled: #F1F1F1;
+  --field-icon-disabled: #979797;
+  --surface-base: #FFFFFF;
+  --surface-subtle: #EEF1F5;
+  --content-heading: #101A28;
+  --content-body: #5A6472;
+  --content-secondary: #6B7480;
+  --content-muted: #A2AAB6;
+  --border-subtle: #CBD3DE;
+  --border-strong: #424242;
+}
