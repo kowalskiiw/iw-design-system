@@ -1,0 +1,71 @@
+/* =============================================================
+   article.css
+   Article card — IW Design Library (ReDesign 2026)
+   Source: Figma "Article" (node 1:659)
+
+   A 216px content card: a 108px image slot on top, then a text block
+   with meta line, title, and description.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary → --content-secondary → #6b7480
+   content/heading   → --content-heading   → #101a28
+   content/body      → --content-body      → #5a6472
+   surface/base      → --surface-base      → #ffffff
+
+   The image is a SLOT — drop an <img class="article__image"> in, or
+   leave the slot empty for the neutral placeholder background.
+   ============================================================= */
+
+.article {
+  box-sizing: border-box;
+  width: 216px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(16, 26, 40, 0.05);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.article__image-slot {
+  height: 108px;
+  width: 100%;
+  background-color: rgba(127, 127, 127, 0.08);
+  overflow: hidden;
+}
+.article__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 16px;
+}
+
+.article__meta {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.article__title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+.article__desc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-body, #5a6472);
+}
