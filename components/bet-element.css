@@ -105,9 +105,14 @@
 .bet-element__meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
   width: 100%;
   padding-bottom: 8px;
+}
+.bet-element__meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .bet-element--default .bet-element__meta {
   padding-bottom: 1px;
@@ -241,9 +246,12 @@
 /* The three boxes inside reuse .odds-vertical from odds-vertical.css
    as-is — this only supplies the grid they sit in. */
 .bet-element__odds {
-  display: grid;
-  grid-template-columns: repeat(3, 96px);
+  display: flex;
   gap: 8px;
   width: 100%;
   padding-top: 8px;
+}
+.bet-element__odds .odds-vertical {
+  flex: 1 0 0;
+  min-width: 0;
 }

@@ -40,9 +40,11 @@ function renderLive({ team1, team2 }) {
   return `
     <div class="bet-element bet-element--live">
       <div class="bet-element__meta">
-        <span class="bet-element__live-label">LIVE</span>
-        <span class="bet-element__live-clock">67′</span>
-        <span class="bet-element__meta-text">2nd Half</span>
+        <div class="bet-element__meta-left">
+          <span class="bet-element__live-label">LIVE</span>
+          <span class="bet-element__live-clock">67′</span>
+          <span class="bet-element__meta-text">2nd Half</span>
+        </div>
         <div class="bet-element__league">
           ${SOCCER('bet-element__league-icon')}
           <span class="bet-element__league-name">Serie A</span>
