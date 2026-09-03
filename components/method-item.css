@@ -109,3 +109,9 @@
   padding: 4px;
   flex-shrink: 0;
 }
+
+/* Verification/brand logo image inside the 36px tile */
+.method-item__logo-img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Chevron sizing (matches Figma's 16px trailing icon) */
+.method-item__chevron { width: 16px; height: 16px; display: block; color: var(--text-value, #333333); }
