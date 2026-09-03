@@ -153,3 +153,10 @@
 .phone-input__lock {
   color: var(--field-icon-disabled, #979797);
 }
+
+/* Kill default <p>/<label> margins so the column's 4px gap controls
+   spacing between label, field, and helper (matches Figma). */
+.phone-input .phone-input__helper,
+.phone-input .phone-input__label {
+  margin: 0;
+}
