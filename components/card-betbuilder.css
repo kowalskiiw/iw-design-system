@@ -1,0 +1,153 @@
+/* =============================================================
+   card-betbuilder.css
+   Betbuilder card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-betbuilder" (node 1:822)
+
+   A 268px card: a striped green header with the match title, a list of
+   bet selections (green dots joined by connector lines) in a subtle
+   panel, and a footer with combined odds + an Add button.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   green/betbuilder → --green-betbuilder → #a8cf1e
+   surface/subtle   → --surface-subtle   → #eef1f5
+   content/heading  → --content-heading  → #101a28
+   intent/brand/bg  → --intent-brand-bg  → #ffd200 (via reused .button--small)
+
+   NOTE: Figma's green header uses a WebGPU shader for the diagonal
+   stripes. That can't render in plain HTML, so the stripes are
+   approximated here with a repeating-linear-gradient — visually
+   equivalent and works everywhere.
+
+   REUSE: the "Add" button reuses .button.button--small from button.css
+   (yellow brand fill, black text). The soccer/sport icon is a dropped-in
+   asset (assets/sports/soccer.svg).
+   ============================================================= */
+
+.card-betbuilder {
+  box-sizing: border-box;
+  position: relative;
+  width: 268px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(16, 26, 40, 0.05);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Green striped header band */
+.card-betbuilder__header {
+  height: 50px;
+  background-color: var(--green-betbuilder, #a8cf1e);
+  background-image: repeating-linear-gradient(
+    62deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0) 14px,
+    rgba(255, 255, 255, 0.21) 14px,
+    rgba(255, 255, 255, 0.21) 28px
+  );
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.card-betbuilder__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-betbuilder__title-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.card-betbuilder__title-text {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: normal;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+/* Selections panel */
+.card-betbuilder__body {
+  padding: 4px 12px 12px;
+  border-left: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-right: 1px solid var(--green-betbuilder, #a8cf1e);
+}
+
+.card-betbuilder__selections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: var(--surface-subtle, #eef1f5);
+}
+
+.card-betbuilder__selection {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+
+/* Green dot marker */
+.card-betbuilder__dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background-color: var(--green-betbuilder, #a8cf1e);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Connector line between consecutive dots */
+.card-betbuilder__selection:not(:last-child) .card-betbuilder__dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 13px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 21px;
+  background-color: rgba(168, 207, 30, 0.3);
+}
+
+.card-betbuilder__selection-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #6b7480;
+}
+.card-betbuilder__selection-text strong {
+  font-weight: 400;
+  color: var(--content-heading, #101a28);
+}
+
+/* Footer: combined odds + Add button */
+.card-betbuilder__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-top: 0;
+  border-radius: 0 0 16px 16px;
+}
+.card-betbuilder__odds {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+}
+.card-betbuilder__footer-spacer {
+  flex: 1 0 0;
+}
