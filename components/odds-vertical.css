@@ -83,5 +83,6 @@
   color: var(--content-muted, #a2aab6);
 }
 .odds-vertical--locked .odds-vertical__lock {
-  color: var(--content-secondary, #6b7480);
+  color: var(--content-muted, #a2aab6);
+  margin-bottom: 4px;
 }
