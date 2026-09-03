@@ -1,7 +1,7 @@
 /* =============================================================
    button.css
    Primary Button — IW Design Library (ReDesign 2026)
-   Source: Figma "PrimaryButtons" component set (node 343:21456)
+   Source: Figma "PrimaryButtons" component set (node 1:316)
 
    DESIGN TOKENS
    Figma variable            →  CSS custom property         (value)
@@ -60,7 +60,7 @@
 .button--small {
   padding: 6px 16px;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 20px;
 }
 
 /* Hover */
@@ -112,8 +112,12 @@
 
 /* CSS fallback spinner. The real component uses an exported SVG glyph —
    drop that in as an <svg>/icon if you want an exact match; this keyframe
-   version is here so button.css has no asset dependency. */
+   version is here so button.css has no asset dependency.
+   box-sizing: border-box is required here — without it the 2px border
+   adds onto the 24px content box (rendering at 28px), which pushes both
+   Big and Small loading buttons taller than their resting height. */
 .button__spinner {
+  box-sizing: border-box;
   width: 24px;
   height: 24px;
   flex-shrink: 0;
