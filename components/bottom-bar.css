@@ -1,0 +1,90 @@
+/* =============================================================
+   bottom-bar.css
+   Bottom navigation bar — IW Design Library (ReDesign 2026)
+   Source: Figma "Bottom Bar" (node 1:759)
+
+   A mobile tab bar: 5 items (icon + label), an active state, a red dot
+   badge and a yellow count badge.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/base       → --surface-base       → #ffffff
+   border/subtle      → --border-subtle      → #cbd3de
+   content/secondary  → --content-secondary  → #6b7480
+   intent/brand/fg    → --intent-brand-fg    → #000000 (active)
+   intent/danger/base → --intent-danger-base → #bb1b1b (dot)
+   intent/brand/bg    → --intent-brand-bg    → #ffd200 (count badge)
+
+   Icons are dropped-in assets (assets/icons/*.svg), 24px, currentColor.
+   ============================================================= */
+
+.bottom-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px;
+  background-color: var(--surface-base, #ffffff);
+  border-top: 1px solid var(--border-subtle, #cbd3de);
+  font-family: "Inter", sans-serif;
+}
+
+.bottom-bar__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 68.8px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--content-secondary, #6b7480);
+}
+.bottom-bar__item--active {
+  color: var(--intent-brand-fg, #000000);
+}
+
+.bottom-bar__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.bottom-bar__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* Red dot badge (Live) */
+.bottom-bar__dot {
+  position: absolute;
+  top: -2px;
+  left: 48.8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Yellow count badge (Betslip) */
+.bottom-bar__badge {
+  position: absolute;
+  top: -4px;
+  left: 42.8px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 100px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  color: var(--intent-brand-fg, #000000);
+}
