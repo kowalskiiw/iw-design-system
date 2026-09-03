@@ -141,3 +141,19 @@
 .input .input__label {
   margin: 0;
 }
+
+/* Trailing eye/visibility icon (Enabled, Focused, Error) */
+.input__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--content-secondary, #6b7480);
+}
+
+/* Trailing eye/visibility icon (Enabled, Focused, Error) */
+.input__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--content-secondary, #6b7480);
+}

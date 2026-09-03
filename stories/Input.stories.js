@@ -1,11 +1,15 @@
 import lockRaw from '../assets/icons/lock-1.svg?raw';
+import eyeRaw from '../assets/icons/eye-closed.svg?raw';
 
-// Real lock icon, sized + namespaced. lock-1.svg already uses currentColor,
-// so it inherits colour from CSS.
-const LOCK_ICON = lockRaw
-  .replace('<svg', '<svg class="input__lock"')
-  .replace(/id="([^"]+)"/g, 'id="inlock-$1"')
-  .replace(/url\(#([^)]+)\)/g, 'url(#inlock-$1)');
+function prep(svg, cls, key) {
+  return svg
+    .replace('<svg', `<svg class="${cls}"`)
+    .replace(/id="([^"]+)"/g, `id="${key}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${key}-$1)`);
+}
+
+const LOCK_ICON = prep(lockRaw, 'input__lock', 'inlock');
+const EYE_ICON  = prep(eyeRaw, 'input__icon', 'ineye');
 
 const MODIFIER = {
   enabled: '',
@@ -18,12 +22,15 @@ function renderInput({ label, value, placeholder, helper, state, filled }) {
   const classes = ['input'];
   if (MODIFIER[state]) classes.push(MODIFIER[state]);
 
+  // Disabled shows the lock; all other states show the eye (visibility) icon.
+  const trailing = state === 'disabled' ? LOCK_ICON : EYE_ICON;
+
   return `
     <div class="${classes.join(' ')}">
       <label class="input__label">${label}</label>
       <div class="input__field">
         <input class="input__control" placeholder="${placeholder}" ${filled ? `value="${value}"` : ''} ${state === 'disabled' ? 'disabled' : ''}>
-        ${state === 'disabled' ? LOCK_ICON : ''}
+        ${trailing}
       </div>
       <p class="input__helper">${helper}</p>
     </div>`;
