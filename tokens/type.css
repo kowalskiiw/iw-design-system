@@ -1,20 +1,20 @@
 :root {
-  --Font Family-Inter: Inter;
-  --Font Size-12: 12;
-  --Font Size-14: 14;
-  --Font Size-16: 16;
-  --Font Size-20: 20;
-  --Font Size-24: 24;
-  --Font Weight-regular: 400;
-  --Font Weight-medium: 500;
-  --Letter Spacing-0: 0;
-  --Line Height-16: 16;
-  --Line Height-20: 20;
-  --Line Height-24: 24;
-  --Line Height-28: 28;
-  --Paragraph Spacing-0: 0;
-  --Paragraph Spacing-20: 20;
-  --Paragraph Indent-0: 0;
-  --List Spacing-0: 0;
-  --List Spacing-2: 2;
+  --font-family-inter: Inter;
+  --font-size-24: 24px;
+  --font-size-14: 14px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-12: 12px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --letter-spacing-0: 0px;
+  --line-height-28: 28px;
+  --line-height-24: 24px;
+  --line-height-20: 20px;
+  --line-height-16: 16px;
+  --paragraph-spacing-0: 0px;
+  --paragraph-spacing-20: 20px;
+  --paragraph-indent-0: 0px;
+  --list-spacing-0: 0px;
+  --list-spacing-2: 2px;
 }
