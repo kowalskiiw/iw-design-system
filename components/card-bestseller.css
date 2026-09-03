@@ -1,0 +1,93 @@
+/* =============================================================
+   card-bestseller.css
+   Bestseller card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-Bestseller" (node 26:6855)
+
+   A 336px card: a striped YELLOW header ("Bestseller" + "See all" pill)
+   over 4 stacked Bet-elements separated by dividers. Same shell as
+   card-live but with the brand-yellow header (dark text) and no tab row.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  → #ffd200
+   content/heading  → --content-heading  → #101a28
+   surface/base     → --surface-base     → #ffffff
+   border/subtle    → --border-subtle    → #cbd3de
+
+   NOTE: header stripes approximate Figma's WebGPU shader with a
+   repeating-linear-gradient (45°, 15px, darker-yellow at 39%).
+
+   REUSE: .bet-element (x4) styles itself; this file provides the card
+   shell, yellow header, and divider lines.
+   ============================================================= */
+
+.card-bestseller {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped yellow header */
+.card-bestseller__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(215, 179, 0, 0) 0,
+    rgba(215, 179, 0, 0) 15px,
+    rgba(215, 179, 0, 0.39) 15px,
+    rgba(215, 179, 0, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.card-bestseller__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+.card-bestseller__see-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0;
+  cursor: pointer;
+}
+.card-bestseller__see-all-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+.card-bestseller__see-all-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--content-heading, #101a28);
+}
+
+/* Bet-element list with dividers between */
+.card-bestseller__bets {
+  display: flex;
+  flex-direction: column;
+}
+.card-bestseller__bets .bet-element:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
