@@ -168,11 +168,6 @@
   width: 16px;
   height: 16px;
 }
-/* Live's soccer icon is bigger than Default's (24px vs 16px) in Figma. */
-.bet-element--live .bet-element__league-icon {
-  width: 24px;
-  height: 24px;
-}
 
 .bet-element__league-name {
   font-size: 12px;
