@@ -147,7 +147,7 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  color: var(--content-secondary, #6b7480);
+  color: var(--intent-brand-fg, #000000);
 }
 
 /* Trailing eye/visibility icon (Enabled, Focused, Error) */
@@ -155,5 +155,5 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
-  color: var(--content-secondary, #6b7480);
+  color: var(--intent-brand-fg, #000000);
 }
