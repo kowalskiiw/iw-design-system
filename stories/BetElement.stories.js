@@ -1,15 +1,17 @@
-function soccerIcon(cls) {
-  return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.3"/>
-    <path d="M12 7l4 3-1.5 4.5h-5L8 10z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
-  </svg>`;
+import soccerRaw from '../assets/sports/soccer.svg?raw';
+import shirt1Raw from '../assets/sports/shirt-1.svg?raw';
+import shirt2Raw from '../assets/sports/shirt-2.svg?raw';
+
+function prep(svg, cls, key) {
+  return svg
+    .replace('<svg', `<svg class="${cls}"`)
+    .replace(/id="([^"]+)"/g, `id="${key}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${key}-$1)`);
 }
 
-function shirtIcon(cls) {
-  return `<svg class="${cls}" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M5 2L2 4v2.5l1.5.5V14h9V7l1.5-.5V4l-3-2-1 1H6z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
-  </svg>`;
-}
+const SOCCER = (cls) => prep(soccerRaw, cls, 'besoccer');
+const SHIRT2 = prep(shirt2Raw, 'bet-element__team-icon', 'beshirt2'); // team 1
+const SHIRT1 = prep(shirt1Raw, 'bet-element__team-icon', 'beshirt1'); // team 2
 
 function renderOdds() {
   const odds = [['1', '4.20'], ['X', '3.85'], ['2', '6.50']];
@@ -24,11 +26,11 @@ function renderTeams(team1, team2) {
   return `
     <div class="bet-element__teams">
       <div class="bet-element__team">
-        ${shirtIcon('bet-element__team-icon')}
+        ${SHIRT2}
         <span class="bet-element__team-name">${team1}</span>
       </div>
       <div class="bet-element__team">
-        ${shirtIcon('bet-element__team-icon')}
+        ${SHIRT1}
         <span class="bet-element__team-name">${team2}</span>
       </div>
     </div>`;
@@ -42,7 +44,7 @@ function renderLive({ team1, team2 }) {
         <span class="bet-element__live-clock">67′</span>
         <span class="bet-element__meta-text">2nd Half</span>
         <div class="bet-element__league">
-          ${soccerIcon('bet-element__league-icon')}
+          ${SOCCER('bet-element__league-icon')}
           <span class="bet-element__league-name">Serie A</span>
         </div>
       </div>
@@ -64,7 +66,7 @@ function renderDefault({ team1, team2 }) {
           <span class="bet-element__date-chip-text bet-element__date-chip-text--time">21:15</span>
         </div>
         <div class="bet-element__league">
-          ${soccerIcon('bet-element__league-icon')}
+          ${SOCCER('bet-element__league-icon')}
           <span class="bet-element__league-name">Serie A</span>
         </div>
       </div>
