@@ -1,23 +1,18 @@
-const CHECK_ICON =
-  '<svg class="badge__icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
-  '<circle cx="6" cy="6" r="5.25" stroke="currentColor" stroke-width="1.2"/>' +
-  '<path d="M3.75 6.25l1.5 1.5 3-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>' +
-  '</svg>';
+import alertIconRaw from '../assets/icons/alert.svg?raw';
 
-const ALERT_ICON =
-  '<svg class="badge__icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
-  '<circle cx="6" cy="6" r="5.25" stroke="currentColor" stroke-width="1.2"/>' +
-  '<path d="M6 3.5v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>' +
-  '<circle cx="6" cy="8.25" r="0.6" fill="currentColor"/>' +
-  '</svg>';
+// Only one icon asset exists right now (a warning triangle), so both
+// states use it for the moment — visually odd for Verified, but it's
+// what's actually in the repo. Swap in a checkmark asset for Verified
+// once one exists. The SVG's fill="currentColor" means it always
+// inherits the badge's own text color, so nothing is hardcoded here.
+const BADGE_ICON = alertIconRaw.replace('<svg ', '<svg class="badge__icon" ');
 
 function renderBadge(state) {
   const isVerified = state === 'verified';
   const classes = ['badge', isVerified ? 'badge--verified' : 'badge--unverified'];
-  const icon = isVerified ? CHECK_ICON : ALERT_ICON;
   const label = isVerified ? 'Verified' : 'Unverified';
 
-  return `<span class="${classes.join(' ')}">${icon}${label}</span>`;
+  return `<span class="${classes.join(' ')}">${BADGE_ICON}${label}</span>`;
 }
 
 export default {
