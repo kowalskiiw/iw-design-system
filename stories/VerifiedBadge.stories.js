@@ -5,7 +5,12 @@ import alertIconRaw from '../assets/icons/alert.svg?raw';
 // what's actually in the repo. Swap in a checkmark asset for Verified
 // once one exists. The SVG's fill="currentColor" means it always
 // inherits the badge's own text color, so nothing is hardcoded here.
-const BADGE_ICON = alertIconRaw.replace('<svg ', '<svg class="badge__icon" ');
+const BADGE_ICON = alertIconRaw
+  .replace("<svg ", "<svg class=\"badge__icon\" ")
+  .replace(/fill="none"/g, "FILL_NONE_PLACEHOLDER")
+  .replace(/fill="[^"]*"/g, "fill=\"currentColor\"")
+  .replace(/<path /g, "<path fill=\"currentColor\" ")
+  .replace(/FILL_NONE_PLACEHOLDER/g, "fill=\"none\"");
 
 function renderBadge(state) {
   const isVerified = state === 'verified';
