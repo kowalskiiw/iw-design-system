@@ -117,13 +117,10 @@
    adds onto the 24px content box (rendering at 28px), which pushes both
    Big and Small loading buttons taller than their resting height. */
 .button__spinner {
-  box-sizing: border-box;
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  border: 2px solid currentColor;
-  border-top-color: transparent;
-  border-radius: 50%;
+  display: block;
   animation: button-spin 0.6s linear infinite;
 }
 

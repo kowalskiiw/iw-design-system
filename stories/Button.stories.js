@@ -1,3 +1,11 @@
+import spinnerRaw from '../assets/icons/spinner.svg?raw';
+
+// Real spinner SVG (currentColor, inherits the button's text colour).
+const SPINNER = spinnerRaw
+  .replace('<svg', '<svg class="button__spinner" aria-hidden="true"')
+  .replace(/id="([^"]+)"/g, 'id="btnspin-$1"')
+  .replace(/url\(#([^)]+)\)/g, 'url(#btnspin-$1)');
+
 export default {
   title: 'IW Design System/Button',
   argTypes: {
@@ -20,9 +28,7 @@ export default {
     if (loading) classes.push('button--loading');
     if (block) classes.push('button--block');
 
-    const spinner = loading
-      ? '<span class="button__spinner" aria-hidden="true"></span>'
-      : '';
+    const spinner = loading ? SPINNER : '';
     const text = loading ? 'Loading' : label;
     const disabledAttr = disabled ? 'disabled aria-disabled="true"' : '';
 
@@ -44,8 +50,8 @@ export const Overview = {
       <button class="button"><span>Big / Default</span></button>
       <button class="button button--small"><span>Small / Default</span></button>
       <button class="button" disabled aria-disabled="true"><span>Disabled</span></button>
-      <button class="button button--loading"><span class="button__spinner" aria-hidden="true"></span><span>Loading</span></button>
-      <button class="button button--small button--loading"><span class="button__spinner" aria-hidden="true"></span><span>Loading</span></button>
+      <button class="button button--loading">${SPINNER}<span>Loading</span></button>
+      <button class="button button--small button--loading">${SPINNER}<span>Loading</span></button>
       <div style="width:336px"><button class="button button--block"><span>Full width</span></button></div>
     </div>`,
 };
