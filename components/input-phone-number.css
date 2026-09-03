@@ -160,3 +160,12 @@
 .phone-input .phone-input__label {
   margin: 0;
 }
+
+/* Pin both fields to the same height regardless of element type
+   (<button> vs <input> render at different default heights otherwise).
+   44px content box + 1px border top/bottom = matches Figma. */
+.phone-input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}

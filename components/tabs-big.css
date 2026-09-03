@@ -1,0 +1,79 @@
+/* =============================================================
+   tabs-big.css
+   Tabs (big) — IW Design Library (ReDesign 2026)
+   Source: Figma "Tabs-big" component (node 1:858)
+   States: Unselected · Selected
+
+   A vertical tab: count number on top, a 24px icon, a label below,
+   and a 2px full-width bottom bar when selected.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary  → --content-secondary  #6b7480
+   text/primary       → --text-primary       #000000
+
+   The icon is a SLOT — supply a real sport icon (assets/sports/*.svg),
+   sized 24x24. Sport icons keep their own colours (do NOT use
+   currentColor here). Compose several tabs in a flex row for a bar;
+   each carries its own .tab-big--selected state.
+
+   Markup this expects:
+     <div class="tab-big tab-big--selected">
+       <span class="tab-big__count">6</span>
+       <svg class="tab-big__icon">…</svg>
+       <span class="tab-big__label">Football</span>
+     </div>
+   ============================================================= */
+
+.tab-big {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 80px;
+  height: 79px;
+  padding: 12px 16px 8px;
+  cursor: pointer;
+}
+
+.tab-big__count {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+.tab-big__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.tab-big__label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+/* Selected */
+.tab-big--selected .tab-big__count,
+.tab-big--selected .tab-big__label {
+  color: var(--text-primary, #000000);
+}
+.tab-big--selected .tab-big__label {
+  font-weight: 500;
+}
+.tab-big--selected::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary, #000000);
+}

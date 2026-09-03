@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/kowalskiiw/iw-design-system#readme",
   "devDependencies": {
+    "@storybook/addon-designs": "^11.1.4",
     "@storybook/html-vite": "^10.5.10",
     "storybook": "^10.5.10"
   }
