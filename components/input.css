@@ -1,7 +1,7 @@
 /* =============================================================
    input.css
    Text input — IW Design Library (ReDesign 2026)
-   Source: Figma "InputText" component set (node 343:21451)
+   Source: Figma "InputText" component set (node 1:89)
    States: Enabled · Focused · Error · Disabled  ×  Empty / Filled
 
    TOKENS USED (Figma variable → CSS custom property → value)
@@ -102,4 +102,42 @@
 .input--disabled .input__control {
   color: var(--text-placeholder, #939393);
   cursor: not-allowed;
+}
+
+/* Pin the field to a fixed height so it matches Figma regardless of the
+   <input>'s default rendering. 44px content + 1px border top/bottom = 46px.
+   Fixed height + align-items:center handles vertical centring, so the
+   vertical padding is removed. */
+.input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Pin the field to a fixed height so it matches Figma regardless of the
+   <input>'s default rendering. 44px content + 1px border top/bottom = 46px.
+   Fixed height + align-items:center handles vertical centring, so the
+   vertical padding is removed. */
+.input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Kill default <p>/<label> margins so the column gap controls spacing
+   between label, field, and helper (matches Figma). */
+.input .input__helper,
+.input .input__label {
+  margin: 0;
+}
+
+/* Disabled lock icon — Figma's disabled field-icon grey. */
+.input__lock {
+  color: var(--field-icon-disabled, #979797);
+}
+
+/* Kill default <p>/<label> margins so the column gap controls spacing. */
+.input .input__helper,
+.input .input__label {
+  margin: 0;
 }
