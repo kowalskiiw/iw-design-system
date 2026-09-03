@@ -151,3 +151,15 @@
 .card-betbuilder__footer-spacer {
   flex: 1 0 0;
 }
+
+/* Figma: the selections block overlaps the header by 14px (header has a
+   -14px bottom margin), so the visible green strip is ~36px, not the full
+   50px. Pull the body up and round its top corners over the green. */
+.card-betbuilder__body {
+  margin-top: -14px;
+  border-top: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-radius: 18px 18px 0 0;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
