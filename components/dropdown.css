@@ -1,17 +1,21 @@
 /* =============================================================
    dropdown.css
    Dropdown / select field — IW Design Library (ReDesign 2026)
-   Source: Figma "InputDropdown" component set (node 1:181)
+   Source: Figma "Input - Dropdown" component set (node 1:181)
    States: Enabled · Focused · Open · Error · Disabled  ×  Empty / Filled
 
    TOKENS USED (Figma variable → CSS custom property → value)
    field/border        → --field-border        #c3c3c3
    field/bg-disabled   → --field-bg-disabled   #f1f1f1
+   field/icon-disabled → --field-icon-disabled #979797
    text/primary        → --text-primary        #000000
    text/value          → --text-value          #333333
    text/placeholder    → --text-placeholder    #939393
    intent/danger/base  → --intent-danger-base  #bb1b1b
    focus/ring          → --focus-ring          #2194ff
+
+   Chevron is a real asset swapped in markup: chevron-down (closed) /
+   chevron-up (Open). The Disabled state shows the real lock icon.
 
    Markup this expects:
      <div class="dropdown">
@@ -75,6 +79,7 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+  color: var(--text-value, #333333);
 }
 
 .dropdown__helper {
@@ -88,18 +93,20 @@
   width: 16px;
   height: 16px;
   flex-shrink: 0;
+  color: var(--field-icon-disabled, #979797);
+}
+
+/* <p>/<label> default margins would break the 4px column gap — reset so
+   the helper sits a flat 4px below the field. */
+.dropdown .dropdown__helper,
+.dropdown .dropdown__label {
+  margin: 0;
 }
 
 /* Focused — adds the 2px ring, keeps the grey border (matches Figma) */
 .dropdown__field:focus-within,
 .dropdown--focused .dropdown__field {
   box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
-}
-
-/* Open — in Figma the chevron swaps to "up". If you use a single chevron
-   asset, this flips it; if you swap SVGs in markup, remove this rule. */
-.dropdown--open .dropdown__icon {
-  transform: rotate(180deg);
 }
 
 /* Error */
