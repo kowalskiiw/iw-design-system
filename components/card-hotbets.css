@@ -1,0 +1,117 @@
+/* =============================================================
+   card-hotbets.css
+   Hot bets card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-HotBets" (node 26:6854)
+
+   A 336px card: yellow striped header ("Hot bets" + "N this week"
+   pill, no chevron), 4 Hotbets rows, then a footer with combi-odds
+   info + a wide Add button.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg   → --intent-brand-bg   → #ffd200
+   content/heading   → --content-heading   → #101a28
+   content/secondary → --content-secondary → #6b7480
+   text/primary      → --text-primary      → #000000
+   surface/base      → --surface-base      → #ffffff
+
+   NOTE: header stripes approximate Figma's WebGPU shader with a
+   repeating-linear-gradient (45°, 15px, darker-yellow at 39%).
+
+   REUSE: .hotbets (x4) and .button.button--small (Add). This file
+   provides the shell, yellow header, and footer layout.
+   ============================================================= */
+
+.card-hotbets {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped yellow header (same as bestseller) */
+.card-hotbets__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(215, 179, 0, 0) 0,
+    rgba(215, 179, 0, 0) 15px,
+    rgba(215, 179, 0, 0.39) 15px,
+    rgba(215, 179, 0, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.card-hotbets__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+.card-hotbets__pill {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.card-hotbets__pill-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+/* Hotbets rows list */
+.card-hotbets__rows {
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+}
+/* rows already carry their own bottom divider; drop it on the last one */
+.card-hotbets__rows .hotbets:last-child {
+  border-bottom: 0;
+}
+
+/* Footer: combi-odds info + Add button */
+.card-hotbets__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px 12px;
+}
+.card-hotbets__footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+.card-hotbets__footer-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+.card-hotbets__footer-odds {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--text-primary, #000000);
+}
+/* wide Add button fills its side of the footer */
+.card-hotbets__footer .button {
+  flex-shrink: 0;
+}
