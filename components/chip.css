@@ -9,11 +9,12 @@
    content/heading  → --content-heading  → #101a28
 
    The default white background is still a raw hex value in Figma — no
-   token. Icon is an exported SVG; size it with .chip__icon and drop the
-   <svg>/<img> in.
+   token. Icon is an exported SVG (calendar, 22px); size it with
+   .chip__icon and drop the <svg>/<img> in.
    ============================================================= */
 
 .chip {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -37,6 +38,8 @@
   width: 22px;
   height: 22px;
   flex-shrink: 0;
+  display: block;
+  color: var(--content-heading, #101a28);
 }
 
 .chip__label {
