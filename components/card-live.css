@@ -1,0 +1,113 @@
+/* =============================================================
+   card-live.css
+   Live card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-Live" (node 26:6401)
+
+   A 336px card that composes existing components: a striped red header
+   ("Live now" + "See all" pill), a row of 5 Tabs-big, then 3
+   Bet-elements separated by dividers.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/danger/base → --intent-danger-base → #bb1b1b
+   surface/base       → --surface-base       → #ffffff
+   border/subtle      → --border-subtle      → #cbd3de
+
+   NOTE: Figma's header uses a WebGPU shader for the diagonal stripes;
+   approximated here with a repeating-linear-gradient (45°, 15px, 39%
+   white) — visually equivalent, works everywhere.
+
+   REUSE: .tab-big (x5) and .bet-element (x3) style themselves; this file
+   only provides the card shell, header, tab row, and divider lines.
+   ============================================================= */
+
+.card-live {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped red header */
+.card-live__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-danger-base, #bb1b1b);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0) 15px,
+    rgba(255, 255, 255, 0.39) 15px,
+    rgba(255, 255, 255, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.card-live__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
+
+.card-live__see-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.22);
+  border: 0;
+  cursor: pointer;
+}
+.card-live__see-all-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
+.card-live__see-all-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--surface-base, #ffffff);
+}
+
+/* Row of 5 Tabs-big */
+.card-live__tabs {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
+
+/* Bet-element list with dividers between */
+.card-live__bets {
+  display: flex;
+  flex-direction: column;
+}
+.card-live__bets .bet-element:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
+
+/* 5 tabs (80px each) exceed the 336px card, so scroll horizontally
+   like Figma. Hide the scrollbar for a clean look. */
+.card-live__tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.card-live__tabs::-webkit-scrollbar {
+  display: none;
+}
+.card-live__tabs .tab-big {
+  flex-shrink: 0;
+}
