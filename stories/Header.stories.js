@@ -1,83 +1,72 @@
-const LOGO_PLACEHOLDER =
-  '<div class="header__logo" style="background:rgba(16,26,40,.15);border-radius:3px"></div>';
+import logo from '../assets/brand/interwetten.svg';
+import chevronLeftRaw from '../assets/icons/chevron-left.svg?raw';
+import crossRaw from '../assets/icons/cross-big.svg?raw';
+import avatarRaw from '../assets/icons/avatar-1.svg?raw';
 
-const CHEVRON_LEFT =
-  '<svg class="header__icon header__icon--back" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
-  '<path d="M10 3L5 8l5 5" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-  '</svg>';
+function prep(svg, cls, key) {
+  return svg
+    .replace('<svg', `<svg class="${cls}"`)
+    .replace(/id="([^"]+)"/g, `id="${key}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${key}-$1)`);
+}
 
-const CROSS_ICON =
-  '<svg class="header__icon header__icon--close" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
-  '<path d="M4 4l8 8M12 4l-8 8" stroke="black" stroke-width="1.5" stroke-linecap="round"/>' +
-  '</svg>';
+const BACK   = prep(chevronLeftRaw, 'header__icon', 'hback');
+const CLOSE  = prep(crossRaw, 'header__icon', 'hclose');
+const AVATAR = prep(avatarRaw, 'header__avatar-icon', 'havatar');
 
-const AVATAR_ICON =
-  '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">' +
-  '<circle cx="8" cy="6" r="3" fill="black"/>' +
-  '<path d="M2 14c0-3 3-5 6-5s6 2 6 5" fill="black"/>' +
-  '</svg>';
+const LOGO = `<img class="header__logo" src="${logo}" alt="interwetten">`;
 
-function renderSubPage({ backIcon, closeIcon }) {
+function subPage() {
   return `
     <div class="header">
-      <div class="header__side header__side--left">${backIcon ? CHEVRON_LEFT : ''}</div>
-      ${LOGO_PLACEHOLDER}
-      <div class="header__side header__side--right">${closeIcon ? CROSS_ICON : ''}</div>
+      <div class="header__side"><button class="header__icon-btn" aria-label="Back">${BACK}</button></div>
+      ${LOGO}
+      <div class="header__side header__side--right"><button class="header__icon-btn" aria-label="Close">${CLOSE}</button></div>
     </div>`;
 }
 
-function renderAccount({ balance }) {
+function account() {
   return `
-    <div class="header header--account">
-      ${LOGO_PLACEHOLDER}
+    <div class="header">
+      ${LOGO}
       <div class="header__account">
-        <span class="header__balance">${balance}</span>
-        <div class="header__avatar">${AVATAR_ICON}</div>
+        <span class="header__balance">€248</span>
+        <span class="header__avatar">${AVATAR}</span>
       </div>
     </div>`;
 }
 
-function renderRegister() {
+function register() {
   return `
-    <div class="header header--register">
-      ${LOGO_PLACEHOLDER}
-      <div class="header__actions">
-        <button class="secondary-button"><span>Login</span></button>
-        <button class="header__cta">Register</button>
+    <div class="header">
+      ${LOGO}
+      <div class="header__buttons">
+        <button class="secondary-button">Login</button>
+        <button class="button button--small">Register</button>
       </div>
     </div>`;
 }
+
+const RENDER = { 'sub-page': subPage, account, register };
 
 export default {
   title: 'IW Design System/Header',
   argTypes: {
-    variant:   { control: 'inline-radio', options: ['sub-page', 'account', 'register'] },
-    backIcon:  { control: 'boolean' },
-    closeIcon: { control: 'boolean' },
-    balance:   { control: 'text' },
+    type: { control: 'inline-radio', options: ['sub-page', 'account', 'register'] },
   },
-  args: {
-    variant: 'sub-page',
-    backIcon: true,
-    closeIcon: true,
-    balance: '€248',
-  },
-  render: ({ variant, backIcon, closeIcon, balance }) => {
-    if (variant === 'account') return renderAccount({ balance });
-    if (variant === 'register') return renderRegister();
-    return renderSubPage({ backIcon, closeIcon });
-  },
+  args: { type: 'sub-page' },
+  render: ({ type }) => RENDER[type](),
 };
 
-export const SubPage  = { name: 'Sub Page', args: { variant: 'sub-page' } };
-export const Account  = { args: { variant: 'account' } };
-export const Register = { args: { variant: 'register' } };
+export const SubPage  = { name: 'Sub Page', args: { type: 'sub-page' } };
+export const Account  = { args: { type: 'account' } };
+export const Register = { args: { type: 'register' } };
 
 export const Overview = {
   render: () => `
-    <div style="display:flex;flex-direction:column;gap:16px;width:360px;font-family:Inter,sans-serif">
-      ${renderSubPage({ backIcon: true, closeIcon: true })}
-      ${renderAccount({ balance: '€248' })}
-      ${renderRegister()}
+    <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;font-family:Inter,sans-serif">
+      ${subPage()}
+      ${account()}
+      ${register()}
     </div>`,
 };
