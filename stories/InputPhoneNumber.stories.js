@@ -1,13 +1,23 @@
-const CHEVRON_ICON =
-  '<svg class="phone-input__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
-  '<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-  '</svg>';
+import chevronRaw from '../assets/icons/chevron-down.svg?raw';
+import lockRaw from '../assets/icons/lock-1.svg?raw';
 
-const LOCK_ICON =
-  '<svg class="phone-input__lock" viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
-  '<rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.3"/>' +
-  '<path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.3"/>' +
-  '</svg>';
+// UI icons -> force currentColor + namespace ids so multiple inline SVGs don't collide.
+function prep(svg, cls, key) {
+  return svg
+    .replace('<svg', `<svg class="${cls}"`)
+    .replace(/fill="none"/g, 'fill="__NONE__"')
+    .replace(/stroke="none"/g, 'stroke="__NONE__"')
+    .replace(/fill="[^"]*"/g, 'fill="currentColor"')
+    .replace(/stroke="[^"]*"/g, 'stroke="currentColor"')
+    .replace(/<path (?![^>]*fill=)/g, '<path fill="currentColor" ')
+    .replace(/"__NONE__"/g, '"none"')
+    .replace(/id="([^"]+)"/g, `id="${key}-$1"`)
+    .replace(/url\(#([^)]+)\)/g, `url(#${key}-$1)`)
+    .replace(/(xlink:href|href)="#([^"]+)"/g, `$1="#${key}-$2"`);
+}
+
+const CHEVRON_ICON = prep(chevronRaw, 'phone-input__icon', 'pichev');
+const LOCK_ICON = prep(lockRaw, 'phone-input__lock', 'pilock');
 
 const MODIFIER = {
   enabled: '',
@@ -61,12 +71,7 @@ export default {
 };
 
 export const Enabled = {};
-
-export const FocusedAreaCode = {
-  name: 'Focused Area Code',
-  args: { state: 'focused-area-code' },
-};
-
+export const FocusedAreaCode = { name: 'Focused Area Code', args: { state: 'focused-area-code' } };
 export const Focused  = { args: { state: 'focused' } };
 export const Error    = { args: { state: 'error' } };
 export const Disabled = { args: { state: 'disabled' } };

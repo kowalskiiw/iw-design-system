@@ -1,7 +1,7 @@
 /* =============================================================
    input-phone-number.css
    Phone number input — IW Design Library (ReDesign 2026)
-   Source: Figma "InputPhoneNumber" component set (node 352:21629)
+   Source: Figma "InputPhoneNumber" component set (node 1:369)
    States: Enabled · Focused Area Code · Focused · Error · Disabled
            ×  Empty / Filled
 
@@ -141,4 +141,15 @@
 .phone-input--disabled .phone-input__value {
   color: var(--text-placeholder, #939393);
   cursor: not-allowed;
+}
+
+/* Reset browser default margin on the <input> so the helper sits a flat
+   4px below the field (matches Figma), same as the <button> side. */
+.phone-input__value {
+  margin: 0;
+}
+
+/* Lock icon (disabled state) — Figma uses the disabled field-icon grey. */
+.phone-input__lock {
+  color: var(--field-icon-disabled, #979797);
 }
