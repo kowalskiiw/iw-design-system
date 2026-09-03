@@ -1,0 +1,42 @@
+/* =============================================================
+   toast.css
+   Toast — IW Design Library (ReDesign 2026)
+   Source: Figma "Toast" (node 1:805)
+
+   A 338px black pill: success checkmark icon + message text.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/fg     → --intent-brand-fg     → #000000 (background)
+   surface/base        → --surface-base        → #ffffff (text)
+   intent/success/base → --intent-success-base → #2ea949 (check icon)
+
+   The check icon is a dropped-in asset (assets/icons/checkmark-2.svg),
+   16px, coloured via currentColor.
+   ============================================================= */
+
+.toast {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 338px;
+  padding: 16px 24px;
+  border-radius: 6px;
+  background-color: var(--intent-brand-fg, #000000);
+  font-family: "Inter", sans-serif;
+}
+
+.toast__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--intent-success-base, #2ea949);
+}
+
+.toast__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
