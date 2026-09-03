@@ -1,26 +1,24 @@
 /* =============================================================
-   tabs.css
-   Tab item — IW Design Library (ReDesign 2026)
-   Source: Figma "Tabs" component (node 1:1006)
-   States: Default · Selected (Figma property1: Default · Variant2)
+   tabs-small.css
+   Tabs (small) — IW Design Library (ReDesign 2026)
+   Source: Figma "Tabs-small" component (node 1:1006)
+   States: Unselected · Selected
 
    TOKENS USED (Figma variable → CSS custom property → value)
    content/secondary  → --content-secondary  #6b7480
    content/heading    → --content-heading    #101a28
    intent/brand/bg    → --intent-brand-bg    #ffd200
 
-   This is a single tab item, not a tab bar — Figma only defines one
-   tab's two states (unselected / selected). Place several side by side
-   (e.g. in a flex row) to build a tab bar; each tab manages its own
-   .tabs--selected state independently.
+   This is a single tab item. Compose several in a flex row to build a
+   tab bar; each tab carries its own .tab-small--selected state.
 
    Markup this expects:
-     <div class="tabs tabs--selected">
-       <span class="tabs__label">Bet builder</span>
+     <div class="tab-small tab-small--selected">
+       <span class="tab-small__label">Bet builder</span>
      </div>
    ============================================================= */
 
-.tabs {
+.tab-small {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -30,7 +28,7 @@
   cursor: pointer;
 }
 
-.tabs__label {
+.tab-small__label {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -38,10 +36,9 @@
   color: var(--content-secondary, #6b7480);
 }
 
-/* Selected — Figma property1: Variant2 */
-.tabs--selected {
+.tab-small--selected {
   border-bottom: 3px solid var(--intent-brand-bg, #ffd200);
 }
-.tabs--selected .tabs__label {
+.tab-small--selected .tab-small__label {
   color: var(--content-heading, #101a28);
 }
