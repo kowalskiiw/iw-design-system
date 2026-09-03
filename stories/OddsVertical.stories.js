@@ -1,8 +1,13 @@
-const LOCK_ICON =
-  '<svg class="odds-vertical__lock" viewBox="0 0 13 15" fill="none" aria-hidden="true">' +
-  '<rect x="1.5" y="6.5" width="10" height="7" rx="1.3" stroke="currentColor" stroke-width="1.2"/>' +
-  '<path d="M4 6.5V4.5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.2"/>' +
-  '</svg>';
+import lockIcon from '../assets/icons/lock-1.svg?raw';
+
+// Inline the real lock: add the sizing class, force currentColor so it inherits
+// the locked state's colour, and namespace internal ids.
+const LOCK_ICON = lockIcon
+  .replace('<svg', '<svg class="odds-vertical__lock"')
+  .replace(/fill="(?!none)[^"]*"/g, 'fill="currentColor"')
+  .replace(/stroke="(?!none)[^"]*"/g, 'stroke="currentColor"')
+  .replace(/id="([^"]+)"/g, 'id="ovlock-$1"')
+  .replace(/url\(#([^)]+)\)/g, 'url(#ovlock-$1)');
 
 const MODIFIER = {
   default: '',
@@ -20,7 +25,9 @@ function renderOdds({ label, value, state }) {
     ? `${LOCK_ICON}<span class="odds-vertical__value">${value}</span>`
     : `<span class="odds-vertical__label">${label}</span><span class="odds-vertical__value">${value}</span>`;
 
-  return `<div class="${classes.join(' ')}">${content}</div>`;
+  // width:96px matches the Figma cell — display-only, kept off the base class
+  // so bet-element can size the reused .odds-vertical to its own layout.
+  return `<div class="${classes.join(' ')}" style="width:96px">${content}</div>`;
 }
 
 export default {

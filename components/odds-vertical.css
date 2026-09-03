@@ -1,7 +1,7 @@
 /* =============================================================
    odds-vertical.css
    Odds (vertical) — IW Design Library (ReDesign 2026)
-   Source: Figma "OddsVertical" component set (node 358:22090)
+   Source: Figma "Odds - vertical" component set (node 1:599)
    States: Default · Selected · Locked · Odds up · Odds down
 
    TOKENS USED (Figma variable → CSS custom property → value)
@@ -9,10 +9,14 @@
    intent/success/base  → --intent-success-base  #2ea949
    intent/danger/base   → --intent-danger-base   #bb1b1b
    text/primary         → --text-primary         #000000
-   surface/subtle*      → --surface-subtle       #eef1f5
+   content/secondary    → --content-secondary    #6b7480
+   content/muted        → --content-muted        #a2aab6
+   surface/subtle       → --surface-subtle       #eef1f5
 
-   * Default background is a raw hex in Figma (#eef1f5); mapped to the
-     token here for consistency. Raw, un-tokenized colors are marked below.
+   Width is grid/layout-specific (Figma cell is 96px) — set it on the
+   parent/grid or per-instance, not on the base class (bet-element reuses
+   these classes). The Locked state shows the real lock icon (12x12,
+   currentColor) in place of the label.
    ============================================================= */
 
 .odds-vertical {
@@ -23,30 +27,29 @@
   justify-content: center;
   height: 48px;
   padding: 8px 0;
-  border-radius: 10px; /* note: horizontal variant uses 8px — see notes */
+  border-radius: 10px;
   background-color: var(--surface-subtle, #eef1f5);
   font-family: "Inter", sans-serif;
   text-align: center;
-  /* width is grid/layout-specific (sampled instance was 96px). */
 }
 
 .odds-vertical__label {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  color: #6b7480; /* raw — no token in Figma */
+  color: var(--content-secondary, #6b7480);
 }
 
 .odds-vertical__value {
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  color: #101a28; /* raw — no token in Figma */
+  color: var(--text-primary, #000000);
 }
 
 .odds-vertical__lock {
-  width: 13px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   flex-shrink: 0;
 }
 
@@ -77,5 +80,8 @@
 
 /* Locked */
 .odds-vertical--locked .odds-vertical__value {
-  color: #a2aab6; /* raw — no token in Figma */
+  color: var(--content-muted, #a2aab6);
+}
+.odds-vertical--locked .odds-vertical__lock {
+  color: var(--content-secondary, #6b7480);
 }
