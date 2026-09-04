@@ -335,6 +335,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <style>
 #verify .method-item{ margin-bottom:12px; }
 </style>
+<style>
+.tile{ height:70px; border:0; border-radius:6px; background-color:var(--surface-subtle,#eef1f5); display:flex; align-items:center; justify-content:center; padding:16px 24px; cursor:pointer; }
+.tile:hover{ background-color:#dee3ea; }
+.tile-logo{ max-width:80%; max-height:36px; object-fit:contain; display:block; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -730,8 +735,9 @@ const HB_ICON={football:'soccer',tennis:'tennis',basketball:'basketball',hockey:
 $('hotList').innerHTML=HOT.map(h=>`<div class="hotbets"><img class="hotbets__icon" src="assets/sports/${HB_ICON[h.ico]||'soccer'}.svg" alt=""><div class="hotbets__body"><span class="hotbets__title">${h.t}</span><span class="hotbets__subtitle">${h.s}</span></div><button class="odds-simple o" data-id="${h.id}" data-teams="${h.t}" data-detail="${h.s}" data-odds="${h.o}"><span class="odds-simple__value">${h.o.toFixed(2)}</span></button></div>`).join('');
 
 /* payment / payout tiles */
-$('payinTiles').innerHTML=PAYMENTS.map(p=>`<button class="tile" onclick="go('payinDetail')">${p}</button>`).join('');
-$('payoutTiles').innerHTML=PAYOUTS.map(p=>`<button class="tile" onclick="go('payoutDetail')">${p}</button>`).join('');
+const LOGO={"PayPal": "PayPal", "Paysafe": "Paysafe", "Poli": "Poli", "Visa": "Visa", "Stripe": "Stripe", "AmazonPay": "AmazonPay", "SEPA": "SEPA", "SEPA / IBAN": "SEPA", "Qiwi": "Qiwi", "Yandex": "Yandex", "Mastercard": "Mastercard", "JCB": "JCB", "Mobile": "Mobile", "Skrill": null, "Klarna": null};
+$('payinTiles').innerHTML=PAYMENTS.map(p=>`<button class="tile" onclick="go('payinDetail')">${LOGO[p]?`<img class="tile-logo" src="assets/payment/${LOGO[p]}.svg" alt="${p}">`:p}</button>`).join('');
+$('payoutTiles').innerHTML=PAYOUTS.map(p=>`<button class="tile" onclick="go('payoutDetail')">${LOGO[p]?`<img class="tile-logo" src="assets/payment/${LOGO[p]}.svg" alt="${p}">`:p}</button>`).join('');
 
 /* ================= Betslip ================= */
 function inSlip(id){return state.slip.some(s=>s.id===id);}
