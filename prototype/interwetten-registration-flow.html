@@ -349,9 +349,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <!-- ============ FRONTPAGE ============ -->
   <div class="screen active" id="frontpage">
-    <div class="appbar">
-      <div class="logo">interwetten</div>
-      <div class="appbar-actions" id="fpActions"></div>
+    <div class="header">
+      <img class="header__logo" src="assets/brand/interwetten.svg" alt="interwetten">
+      <div id="fpActions"></div>
     </div>
     <div class="scroll" id="fpScroll">
       <div class="cats no-bar" id="cats"></div>
@@ -835,9 +835,9 @@ $('addCombiHot').onclick=()=>toggleBet({id:'hotcombi',teams:'Hot Bets combi',det
 function updateHeader(){
   const a=$('fpActions');
   if(state.registered){
-    a.innerHTML=`<span class="bal-pill">${euro(state.balance)}</span><button class="avatar-btn" onclick="openUsermenu()"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3.2" stroke="#ffd400" stroke-width="1.8"/><path d="M5.5 20a6.5 6.5 0 0113 0" stroke="#ffd400" stroke-width="1.8"/></svg></button>`;
+    a.innerHTML=`<div class="header__account"><span class="header__balance">${euro(state.balance)}</span><span class="header__avatar" onclick="openUsermenu()"><img class="header__avatar-icon" src="assets/icons/avatar-1.svg" alt=""></span></div>`;
   }else{
-    a.innerHTML=`<button class="btn-pill btn-login" onclick="toast('Login — not part of this prototype','info')">Login</button><button class="btn-pill btn-register" onclick="go('register')">Register</button>`;
+    a.innerHTML=`<div class="header__buttons"><button class="secondary-button" onclick="toast('Login — not part of this prototype','info')">Login</button><button class="button button--small" onclick="go('register')">Register</button></div>`;
   }
 }
 
