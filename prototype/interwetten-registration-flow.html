@@ -544,7 +544,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <!-- ============ PAYIN METHODS ============ -->
   <div class="screen" id="payinMethods">
-    <div class="appbar"><div class="logo center">interwetten</div><div style="width:40px"></div><button class="icon-x" onclick="payinBack()"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+    <div class="header">
+      <div class="header__side"></div>
+      <img class="header__logo" src="assets/brand/interwetten.svg" alt="interwetten">
+      <div class="header__side header__side--right"><button class="header__icon-btn" onclick="payinBack()"><img class="header__icon" src="assets/icons/cross-big.svg" alt="Close"></button></div>
+    </div>
     <div class="form-scroll">
       <div class="headline">Deposit &amp; Verify</div>
       <p class="sub">Choose a payment method. Your first deposit verifies your account instantly via PSD2.</p>
