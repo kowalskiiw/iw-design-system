@@ -340,6 +340,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .tile:hover{ background-color:#dee3ea; }
 .tile-logo{ max-width:80%; max-height:36px; object-fit:contain; display:block; }
 </style>
+<style>
+#payoutDetail .input{ margin-bottom:16px; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -572,7 +575,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       <div class="headline">Deposit details</div>
       <p class="sub">Enter your payment details and the amount you would like to deposit.</p>
       <div class="field"><label>Card number</label><div class="selectbox">Mastercard <svg viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      <div class="field"><label>Card holder</label><input value="Max Mustermann"></div>
+      <div class="input">
+        <label class="input__label">Card holder</label>
+        <div class="input__field"><input class="input__control" value="Max Mustermann"></div>
+      </div>
       <div class="field"><label>Card number</label><input value="2393 5833 0125 0042 5019"></div>
       <div style="display:flex;gap:8px"><div class="field" style="flex:1"><label>Expiration date</label><input value="11/29"></div><div class="field" style="flex:1"><label>Security code</label><input value="235"></div></div>
       <div class="field"><label>Amount</label><input id="payinAmount" type="number" value="120" inputmode="numeric"></div>
@@ -601,10 +607,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
     <div class="form-scroll">
       <div class="headline">Payout details</div>
       <p class="sub" id="payoutBalHint">Available balance: —</p>
-      <div class="field"><label>Card holder</label><input value="Max Mustermann"></div>
-      <div class="field"><label>IBAN</label><input value="AT61 1904 3002 3457 3201"></div>
-      <div class="field"><label>Amount</label><input id="payoutAmount" type="number" value="50" inputmode="numeric"></div>
-      <button class="btn-primary" onclick="doPayout()">Payout now</button>
+      <div class="input">
+        <label class="input__label">Card holder</label>
+        <div class="input__field"><input class="input__control" value="Max Mustermann"></div>
+      </div>
+      <div class="input">
+        <label class="input__label">IBAN</label>
+        <div class="input__field"><input class="input__control" value="AT61 1904 3002 3457 3201"></div>
+      </div>
+      <div class="input">
+        <label class="input__label">Amount</label>
+        <div class="input__field"><input class="input__control" id="payoutAmount" type="number" value="50" inputmode="numeric"></div>
+      </div>
+      <button class="button button--block" onclick="doPayout()"><span>Payout now</span></button>
       <div style="height:16px"></div>
     </div>
   </div>
