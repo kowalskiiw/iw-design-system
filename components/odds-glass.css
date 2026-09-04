@@ -1,0 +1,62 @@
+/* =============================================================
+   odds-glass.css
+   Odds (glass) — IW Design Library (ReDesign 2026)
+   Source: Figma "Odds-glass" component set (node 1:977)
+   States: Default · Hover · Selected
+
+   A translucent "glass" odds button meant to sit over a coloured or
+   image background. Default/Hover use white-alpha fills; Selected uses
+   the solid brand yellow.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  #ffd200
+   intent/brand/fg  → --intent-brand-fg  #000000
+   surface/base     → --surface-base     #ffffff (text)
+
+   backdrop-filter adds the frosted-glass blur (the "liquid glass" feel);
+   it needs a background behind the button to show. Falls back gracefully
+   to a plain translucent fill where unsupported.
+   ============================================================= */
+
+.odds-glass {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 94px;
+  height: 44px;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.odds-glass__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--surface-base, #ffffff);
+}
+
+/* Hover — brighter translucent fill */
+.odds-glass:hover,
+.odds-glass--hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Selected — solid brand yellow, dark text, no blur needed */
+.odds-glass--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.odds-glass--selected .odds-glass__value {
+  color: var(--intent-brand-fg, #000000);
+}
