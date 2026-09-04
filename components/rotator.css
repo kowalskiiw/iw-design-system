@@ -1,0 +1,90 @@
+/* =============================================================
+   rotator.css
+   Rotator (hero) — IW Design Library (ReDesign 2026)
+   Source: Figma "Rotator" component set (node 1:940)
+
+   A horizontal row of 320x208 hero cards. Each card has a background
+   image, a dark legibility overlay, and bottom-anchored content:
+   a bold-italic title, a subtitle, and two Odds-Glass buttons.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/base → --surface-base → #ffffff (text + border)
+
+   REUSE: the two odds buttons are the .odds-glass component. Slide
+   images are dropped-in assets (assets/rotator/*.jpg).
+   ============================================================= */
+
+.rotator {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+.rotator::-webkit-scrollbar { display: none; }
+
+.rotator__slide {
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  width: 320px;
+  height: 208px;
+  border: 4px solid var(--surface-base, #ffffff);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.rotator__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark overlay for text legibility */
+.rotator__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.rotator__content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px;
+}
+
+.rotator__title {
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--surface-base, #ffffff);
+}
+
+.rotator__subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--surface-base, #ffffff);
+}
+
+.rotator__odds {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+/* the two reused .odds-glass buttons fill the row evenly */
+.rotator__odds .odds-glass {
+  flex: 1 0 0;
+  min-width: 0;
+  width: auto;
+}
