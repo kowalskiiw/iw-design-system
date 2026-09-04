@@ -1,73 +1,23 @@
 /* =============================================================
    header.css
-   App header bar — IW Design Library (ReDesign 2026)
+   Header — IW Design Library (ReDesign 2026)
    Source: Figma "Header" component set (node 1:782)
-   Variants: Sub Page (default) · Account · Register
+   Variants: Sub Page · Account · Register
 
-   DESIGN TOKENS
-   Figma variable          →  CSS custom property     (value)
-   intent/brand/bg         →  --intent-brand-bg        (#FFD200)
-   intent/brand/bg-hover   →  --intent-brand-bg-hover  (#ECC200)
-   intent/brand/fg         →  --intent-brand-fg        (#000000)
-   intent/danger/bg        →  --intent-danger-bg       (#FDF3F3)
-   content/heading         →  --content-heading        (#101A28)
+   Yellow app bar (intent/brand/bg), 360x56, that reuses existing
+   components/icons rather than restyling them:
+     - Sub Page:  back chevron (chevron-left) · logo · close (cross-big)
+     - Account:   logo · balance (€) + avatar circle
+     - Register:  logo · Login (.secondary-button) + Register (.button--small)
 
-   The avatar border is a raw rgba(16, 26, 40, 0.14) in Figma with no
-   var() wrapper at all — but 16/26/40 is exactly content/heading
-   (#101a28) at 14% opacity (confirmed against tokens/semantic.css).
-   This design system's tokens are stored as hex strings, not separate
-   RGB channels, so it can't be expressed as var(--content-heading) plus
-   an alpha; hardcoded here with this comment instead of inventing an
-   unrelated token.
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg        → --intent-brand-bg        #ffd200
+   intent/brand/bg-hover  → --intent-brand-bg-hover  #ecc200
+   content/heading        → --content-heading        #101a28
+   intent/brand/fg        → --intent-brand-fg         #000000
 
-   REUSE, DON'T RESTYLE: this is a composite — where it contains
-   elements this library already has, the markup reuses those classes
-   as-is:
-     - Register's "Login" button is a 1:1 match for .secondary-button
-       (secondary-button.css) — same border/text token, radius, padding,
-       and font. Reused directly.
-     - Register's "Register" button LOOKS like .button (Primary Buttons)
-       but Figma binds it to inverted colors (bg = intent/brand/fg
-       black, text = intent/danger/bg near-white) and different padding
-       (20px/12px, matching neither .button's Big nor Small scale).
-       Reusing .button unmodified would render the wrong colors, so it
-       gets its own small .header__cta class below instead — worth a
-       design check, since the bg/text tokens read like they may be
-       swapped rather than intentional.
-   Logo, back-chevron, close, and avatar icon are all dropped-in assets,
-   not re-styled here — the classes below only size/position them.
-
-   Markup this expects:
-     Sub Page (default — no modifier class needed):
-       <div class="header">
-         <div class="header__side header__side--left">
-           <svg class="header__icon header__icon--back">…chevron-left…</svg>
-         </div>
-         <img class="header__logo" src="…" alt="">
-         <div class="header__side header__side--right">
-           <svg class="header__icon header__icon--close">…cross-big…</svg>
-         </div>
-       </div>
-
-     Account:
-       <div class="header header--account">
-         <img class="header__logo" src="…" alt="">
-         <div class="header__account">
-           <span class="header__balance">€248</span>
-           <div class="header__avatar"><img src="…" alt=""></div>
-         </div>
-       </div>
-
-     Register:
-       <div class="header header--register">
-         <img class="header__logo" src="…" alt="">
-         <div class="header__actions">
-           <button class="secondary-button">Login</button>
-           <button class="header__cta">Register</button>
-         </div>
-       </div>
-   Width is layout-specific (sampled instance was 360px) — set it on the
-   parent, not here.
+   Icons (chevron-left, cross-big, avatar) and the logo are dropped-in
+   assets; the classes below only size/position the slots.
    ============================================================= */
 
 .header {
@@ -75,65 +25,64 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 360px;
   max-width: 375px;
-  max-height: 56px;
+  height: 56px;
   padding: 14px 12px;
   background-color: var(--intent-brand-bg, #ffd200);
   font-family: "Inter", sans-serif;
 }
 
+/* Logo (interwetten wordmark) */
 .header__logo {
-  width: 116px;
   height: 19px;
+  width: 116px;
   flex-shrink: 0;
+  display: block;
 }
 
-/* Sub Page — the default variant, no modifier class needed: it's the
-   only one where the icon slots sit either side of the logo instead of
-   a content cluster on the right. */
+/* Sub Page: fixed-width side slots so the logo stays centred */
 .header__side {
-  position: relative;
+  display: flex;
+  align-items: center;
   width: 40px;
   flex-shrink: 0;
 }
-.header__side--left {
-  height: 24px;
-}
 .header__side--right {
-  height: 28px;
+  justify-content: flex-end;
 }
 
+/* Icon buttons (back / close) */
+.header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--intent-brand-fg, #000000);
+}
 .header__icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   width: 16px;
   height: 16px;
-}
-.header__icon--back {
-  left: 0;
-}
-.header__icon--close {
-  right: 0;
+  display: block;
 }
 
-/* Account — .header--account itself needs no declarations (the bar
-   layout is identical to Sub Page's); it exists on the root element for
-   markup clarity and as a scoping hook for .header__account below. */
+/* Account: balance + avatar */
 .header__account {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
+  flex-shrink: 0;
 }
-
 .header__balance {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   color: var(--content-heading, #101a28);
-  white-space: nowrap;
 }
-
 .header__avatar {
   box-sizing: border-box;
   display: flex;
@@ -143,31 +92,31 @@
   height: 32px;
   border-radius: 999px;
   background-color: var(--intent-brand-bg-hover, #ecc200);
-  border: 1.5px solid rgba(16, 26, 40, 0.14); /* content/heading at 14% */
+  border: 1.5px solid rgba(16, 26, 40, 0.14);
   overflow: hidden;
   flex-shrink: 0;
 }
+.header__avatar-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--intent-brand-fg, #000000);
+}
 
-/* Register — .header--register, like .header--account, needs no
-   declarations of its own; it's a scoping hook for .header__actions. */
-.header__actions {
+/* Register: button group (buttons reuse .secondary-button / .button--small) */
+.header__buttons {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
-.header__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px;
-  border: 0;
-  border-radius: 42px;
+/* Register variant's primary button: Figma shows it black (intent/brand/fg
+   bg, light text), scoped to the header so the global .button is unchanged. */
+.header .button--small {
   background-color: var(--intent-brand-fg, #000000);
   color: var(--intent-danger-bg, #fdf3f3);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  cursor: pointer;
+}
+.header .button--small:hover {
+  background-color: var(--intent-brand-fg, #000000);
 }

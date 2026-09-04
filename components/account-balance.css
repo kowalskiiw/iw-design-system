@@ -173,3 +173,9 @@
   border: 0;
   border-top: 1px solid var(--border-subtle, #cbd3de);
 }
+
+/* Total credit row uses Medium (500) for emphasis, per Figma */
+.account-balance__row--total .account-balance__row-label,
+.account-balance__row--total .account-balance__row-value {
+  font-weight: 500;
+}
