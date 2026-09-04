@@ -1,0 +1,2733 @@
+:root {
+  --intent-brand-bg: #FFD200;
+  --intent-brand-bg-hover: #ECC200;
+  --intent-brand-bg-pressed: #CCA800;
+  --intent-brand-fg: #000000;
+  --focus-ring: #2194FF;
+  --text-primary: #000000;
+  --text-value: #333333;
+  --text-secondary: #535353;
+  --text-placeholder: #939393;
+  --field-border: #C3C3C3;
+  --field-bg-disabled: #F1F1F1;
+  --field-icon-disabled: #979797;
+  --intent-danger-base: #BB1B1B;
+  --intent-success-base: #2EA949;
+  --surface-base: #FFFFFF;
+  --surface-subtle: #EEF1F5;
+  --content-heading: #101A28;
+  --content-body: #5A6472;
+  --content-secondary: #6B7480;
+  --content-muted: #A2AAB6;
+  --border-subtle: #CBD3DE;
+  --intent-success-bg: #F0FBF3;
+  --intent-success-border: #A4E6B3;
+  --intent-success-fg: #1C652C;
+  --intent-danger-bg: #FDF3F3;
+  --intent-danger-border: #F1B4B4;
+  --text-strong: #292929;
+  --border-strong: #424242;
+  --green-betbuilder: #A8CF1E;
+  --intent-danger-base-lighter: #D93A2B;
+  --content-bg-betslip: #181E26;
+}
+
+
+:root {
+  --font-family-inter: Inter;
+  --font-size-24: 24px;
+  --font-size-14: 14px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-12: 12px;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --letter-spacing-0: 0px;
+  --line-height-28: 28px;
+  --line-height-24: 24px;
+  --line-height-20: 20px;
+  --line-height-16: 16px;
+  --paragraph-spacing-0: 0px;
+  --paragraph-spacing-20: 20px;
+  --paragraph-indent-0: 0px;
+  --list-spacing-0: 0px;
+  --list-spacing-2: 2px;
+}
+
+
+/* =============================================================
+   account-balance.css
+   Account balance row — IW Design Library (ReDesign 2026)
+   Source: Figma "Account Balance" (node 1:676)
+   Variants: Default · Balance
+
+   DESIGN TOKENS
+   Figma variable    →  CSS custom property  (value)
+   text/strong       →  --text-strong        (#292929)
+   border/subtle     →  --border-subtle      (#CBD3DE)
+
+   Every text node on this component uses text/strong — there's no
+   secondary/placeholder color split like the input family has. The
+   divider between the Balance rows is an image asset in Figma (not a
+   readable stroke color), so --border-subtle is an approximation, not
+   a pulled value — confirm with design if it looks off.
+
+   The Verified badge in the Default variant is a 1:1 match for
+   .badge.badge--verified in verified-badge.css — reuse those classes
+   directly rather than re-styling a badge here.
+
+   Markup this expects:
+     Default:
+       <div class="account-balance">
+         <div class="account-balance__content">
+           <div class="account-balance__header">
+             <svg class="account-balance__icon">…</svg>
+             <span class="account-balance__title">Text</span>
+             <span class="badge badge--verified">
+               <svg class="badge__icon">…</svg>Verified
+             </span>
+           </div>
+           <span class="account-balance__subtitle">xxx.xxx Punkte</span>
+         </div>
+         <svg class="account-balance__chevron">…</svg>
+       </div>
+
+     Balance — add .account-balance--balance and drop the subtitle for a
+     .account-balance__rows list instead:
+       <div class="account-balance account-balance--balance">
+         <div class="account-balance__top">
+           <div class="account-balance__content">
+             <div class="account-balance__header">
+               <svg class="account-balance__icon">…</svg>
+               <span class="account-balance__title">Text</span>
+             </div>
+           </div>
+           <svg class="account-balance__chevron">…</svg>
+         </div>
+         <div class="account-balance__rows">
+           <div class="account-balance__row">
+             <span class="account-balance__row-label">Main credit balance:</span>
+             <span class="account-balance__row-value">20.163,41 €</span>
+           </div>
+           <div class="account-balance__row">
+             <span class="account-balance__row-label">Credit under review:</span>
+             <span class="account-balance__row-value">20.163,41 €</span>
+           </div>
+           <hr class="account-balance__divider">
+           <div class="account-balance__row account-balance__row--total">
+             <span class="account-balance__row-label">Total credit:</span>
+             <span class="account-balance__row-value">21.163,41 €</span>
+           </div>
+         </div>
+       </div>
+   Width is layout-specific (sampled instance was 312px) — set it on the
+   parent, not here.
+   ============================================================= */
+
+.account-balance {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Default doesn't need this wrapper for layout (it only ever has one
+   top-level row), but Balance does — .account-balance__top holds the
+   icon/title column and the chevron side by side, above the row list. */
+.account-balance__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.account-balance__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.account-balance__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-balance__icon,
+.account-balance__chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.account-balance__title {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-strong, #292929);
+}
+
+.account-balance__subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-strong, #292929);
+}
+
+/* Balance — Figma "Type=Balance". Same icon/title header as Default (see
+   .account-balance__top above), but with a credit breakdown list instead
+   of a single subtitle line. */
+.account-balance--balance .account-balance__header {
+  width: 228px; /* matches the sampled title-row width in Figma */
+}
+
+.account-balance__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.account-balance__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.account-balance__row-label {
+  /* 28px = icon width (16px) + header gap (12px), so labels line up
+     under the title text above rather than under the icon. */
+  padding-left: 28px;
+}
+
+.account-balance__row-label,
+.account-balance__row-value {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-strong, #292929);
+}
+
+/* Total row — Figma bumps this one row to font-medium (500). */
+.account-balance__row--total .account-balance__row-label,
+.account-balance__row--total .account-balance__row-value {
+  font-weight: 500;
+}
+
+.account-balance__divider {
+  width: calc(100% - 28px);
+  margin: 0 0 0 28px;
+  border: 0;
+  border-top: 1px solid var(--border-subtle, #cbd3de);
+}
+
+/* Total credit row uses Medium (500) for emphasis, per Figma */
+.account-balance__row--total .account-balance__row-label,
+.account-balance__row--total .account-balance__row-value {
+  font-weight: 500;
+}
+
+
+/* =============================================================
+   article.css
+   Article card — IW Design Library (ReDesign 2026)
+   Source: Figma "Article" (node 1:659)
+
+   A 216px content card: a 108px image slot on top, then a text block
+   with meta line, title, and description.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary → --content-secondary → #6b7480
+   content/heading   → --content-heading   → #101a28
+   content/body      → --content-body      → #5a6472
+   surface/base      → --surface-base      → #ffffff
+
+   The image is a SLOT — drop an <img class="article__image"> in, or
+   leave the slot empty for the neutral placeholder background.
+   ============================================================= */
+
+.article {
+  box-sizing: border-box;
+  width: 216px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(16, 26, 40, 0.05);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.article__image-slot {
+  height: 108px;
+  width: 100%;
+  background-color: rgba(127, 127, 127, 0.08);
+  overflow: hidden;
+}
+.article__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 16px;
+}
+
+.article__meta {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.article__title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+.article__desc {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-body, #5a6472);
+}
+
+
+/* =============================================================
+   bet-element.css
+   Bet card — IW Design Library (ReDesign 2026)
+   Source: Figma "Bet-element" component set (node 1:870)
+   Variants: Live · Default
+
+   DESIGN TOKENS
+   Figma variable              →  CSS custom property         (value)
+   intent/danger/base-lighter  →  --intent-danger-base-lighter (#D93A2B)
+   content/secondary           →  --content-secondary          (#6B7480)
+   content/heading             →  --content-heading             (#101A28)
+   intent/brand/bg             →  --intent-brand-bg             (#FFD200)
+   surface/subtle              →  --surface-subtle              (#EEF1F5)
+   text/primary                →  --text-primary                (#000000)
+
+   Two colours are genuinely raw in Figma with no matching token
+   (checked tokens/semantic.css): the date-chip background #f1f3f7 and
+   its divider #c8d0db. Hardcoded below.
+
+   Two others — the date chip's "Today" (#6b7480) and "21:15" (#101a28)
+   text — are ALSO left raw by Figma, but they exactly match
+   content/secondary and content/heading, and other text in this same
+   component (the league name) IS bound to those tokens. That reads like
+   an authoring gap rather than intentional, so they're tokenized here
+   for consistency — flag to design if that's wrong.
+
+   REUSE, DON'T RESTYLE: the three odds boxes at the bottom are literally
+   named "Odds - vertical" in Figma and match odds-vertical.css exactly
+   (surface/subtle bg, content/secondary label, text/primary value, 10px
+   radius, ~96px width) — reuse .odds-vertical / .odds-vertical__label /
+   .odds-vertical__value as-is; this file only adds the 3-column grid
+   wrapper around them. Team jersey icons and the soccer/league icon are
+   dropped-in assets, not re-styled here.
+
+   Markup this expects:
+     Live:
+       <div class="bet-element bet-element--live">
+         <div class="bet-element__meta">
+           <span class="bet-element__live-label">LIVE</span>
+           <span class="bet-element__live-clock">67′</span>
+           <span class="bet-element__meta-text">2nd Half</span>
+           <div class="bet-element__league">
+             <svg class="bet-element__league-icon">…soccer…</svg>
+             <span class="bet-element__league-name">Serie A</span>
+           </div>
+         </div>
+         <div class="bet-element__matchup">
+           <div class="bet-element__teams">
+             <div class="bet-element__team">
+               <svg class="bet-element__team-icon">…shirt…</svg>
+               <span class="bet-element__team-name">Atalanta Bergamasca Calcio</span>
+             </div>
+             <div class="bet-element__team">
+               <svg class="bet-element__team-icon">…shirt…</svg>
+               <span class="bet-element__team-name">Società Sportiva Lazio Roma</span>
+             </div>
+           </div>
+           <div class="bet-element__score"><span>2</span><span>1</span></div>
+         </div>
+         <div class="bet-element__odds">
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">1</span>
+             <span class="odds-vertical__value">4.20</span>
+           </div>
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">X</span>
+             <span class="odds-vertical__value">3.85</span>
+           </div>
+           <div class="odds-vertical">
+             <span class="odds-vertical__label">2</span>
+             <span class="odds-vertical__value">6.50</span>
+           </div>
+         </div>
+       </div>
+
+     Default — drop the LIVE/clock/score, swap in the date chip:
+       <div class="bet-element bet-element--default">
+         <div class="bet-element__meta">
+           <div class="bet-element__date-chip">
+             <span class="bet-element__date-chip-text bet-element__date-chip-text--day">Today</span>
+             <span class="bet-element__date-chip-divider"></span>
+             <span class="bet-element__date-chip-text bet-element__date-chip-text--time">21:15</span>
+           </div>
+           <div class="bet-element__league">
+             <svg class="bet-element__league-icon">…soccer…</svg>
+             <span class="bet-element__league-name">Serie A</span>
+           </div>
+         </div>
+         <div class="bet-element__matchup"> … same teams, no .bet-element__score … </div>
+         <div class="bet-element__odds"> … same 3 .odds-vertical boxes … </div>
+       </div>
+   Width is layout-specific (sampled instance was 336px) — set it on the
+   parent, not here.
+   ============================================================= */
+
+.bet-element {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 16px;
+  font-family: "Inter", sans-serif;
+}
+
+.bet-element__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 8px;
+}
+.bet-element__meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.bet-element--default .bet-element__meta {
+  padding-bottom: 1px;
+}
+
+.bet-element__live-label,
+.bet-element__live-clock {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--intent-danger-base-lighter, #d93a2b);
+  white-space: nowrap;
+}
+
+.bet-element__meta-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.bet-element__date-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: #f1f3f7; /* raw — no matching token in Figma */
+}
+
+.bet-element__date-chip-text {
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.bet-element__date-chip-text--day {
+  color: var(--content-secondary, #6b7480); /* raw in Figma, tokenized — see header note */
+}
+.bet-element__date-chip-text--time {
+  color: var(--content-heading, #101a28); /* raw in Figma, tokenized — see header note */
+}
+
+.bet-element__date-chip-divider {
+  width: 1px;
+  height: 10px;
+  background-color: #c8d0db; /* raw — no matching token in Figma */
+}
+
+.bet-element__league {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bet-element__league-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.bet-element__league-name {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+  white-space: nowrap;
+}
+
+.bet-element__matchup {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+.bet-element--default .bet-element__matchup {
+  min-height: 50px;
+}
+
+.bet-element__teams {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 2px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.bet-element__team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bet-element__team-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.bet-element__team-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+/* Live only — the running score badge beside the team names. */
+.bet-element__score {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  gap: 2px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+/* The three boxes inside reuse .odds-vertical from odds-vertical.css
+   as-is — this only supplies the grid they sit in. */
+.bet-element__odds {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  padding-top: 8px;
+}
+.bet-element__odds .odds-vertical {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+
+/* =============================================================
+   bottom-bar.css
+   Bottom navigation bar — IW Design Library (ReDesign 2026)
+   Source: Figma "Bottom Bar" (node 1:759)
+
+   A mobile tab bar: 5 items (icon + label), an active state, a red dot
+   badge and a yellow count badge.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/base       → --surface-base       → #ffffff
+   border/subtle      → --border-subtle      → #cbd3de
+   content/secondary  → --content-secondary  → #6b7480
+   intent/brand/fg    → --intent-brand-fg    → #000000 (active)
+   intent/danger/base → --intent-danger-base → #bb1b1b (dot)
+   intent/brand/bg    → --intent-brand-bg    → #ffd200 (count badge)
+
+   Icons are dropped-in assets (assets/icons/*.svg), 24px, currentColor.
+   ============================================================= */
+
+.bottom-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px;
+  background-color: var(--surface-base, #ffffff);
+  border-top: 1px solid var(--border-subtle, #cbd3de);
+  font-family: "Inter", sans-serif;
+}
+
+.bottom-bar__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 68.8px;
+  flex-shrink: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: var(--content-secondary, #6b7480);
+}
+.bottom-bar__item--active {
+  color: var(--intent-brand-fg, #000000);
+}
+
+.bottom-bar__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.bottom-bar__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* Red dot badge (Live) */
+.bottom-bar__dot {
+  position: absolute;
+  top: -2px;
+  left: 48.8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Yellow count badge (Betslip) */
+.bottom-bar__badge {
+  position: absolute;
+  top: -4px;
+  left: 42.8px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 100px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  color: var(--intent-brand-fg, #000000);
+}
+
+
+/* =============================================================
+   button.css
+   Primary Button — IW Design Library (ReDesign 2026)
+   Source: Figma "PrimaryButtons" component set (node 1:316)
+
+   DESIGN TOKENS
+   Figma variable            →  CSS custom property         (value)
+   intent/brand/bg           →  --intent-brand-bg           (#ffd200)
+   intent/brand/bg-hover     →  --intent-brand-bg-hover     (#ecc200)
+   intent/brand/bg-pressed   →  --intent-brand-bg-pressed   (#cca800)
+   intent/brand/fg           →  --intent-brand-fg           (#000000)
+   focus/ring                →  --focus-ring                (#2194ff)
+
+   Each rule references the token with the Figma value as a fallback,
+   so this file works standalone AND picks up your tokens.css when it's
+   loaded. If your exported token names differ (slashes are usually
+   flattened to hyphens by the exporter), rename the custom properties
+   below to match.
+
+   Sizes: Big (default — 32px/12px padding, 16px font) and Small (16px/6px
+   padding, 14px font) via .button--small. Both share the same 42px pill
+   radius, inherited from .button.
+
+   Loading markup: Figma pairs the spinner with a visible "Loading" text
+   label next to it, not just the spinner alone — e.g. `<span
+   class="button__spinner"></span>Loading`. The label is a plain text node
+   so it picks up size/weight from .button (or .button--small) directly,
+   no separate class needed.
+   ============================================================= */
+
+.button {
+  /* layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 32px;
+
+  /* shape */
+  border: 0;
+  border-radius: 42px;
+
+  /* typography */
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+
+  /* color */
+  color: var(--intent-brand-fg, #000000);
+  background-color: var(--intent-brand-bg, #ffd200);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Small size — 16px/6px padding, 14px type, same 42px pill radius as Big
+   (inherited from .button). Combine as class="button button--small". */
+.button--small {
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Hover */
+.button:hover {
+  background-color: var(--intent-brand-bg-hover, #ecc200);
+}
+
+/* Clicked / Pressed */
+.button:active {
+  background-color: var(--intent-brand-bg-pressed, #cca800);
+}
+
+/* Focused (keyboard only) — 2px inset ring that follows the pill shape.
+   :focus-visible keeps it off mouse clicks and on for keyboard nav. */
+.button:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Disabled
+   NOTE: the Figma "Disabled" variant is currently visually identical to
+   Default — there is no dimming or desaturation in the design data. The
+   rules below only change affordance (cursor + interaction). Uncomment
+   the opacity line for a conventional dimmed look, but that value is NOT
+   from the design system, so confirm it with design first. */
+.button:disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  /* opacity: 0.5; */
+}
+
+/* Loading
+   Big: vertical padding drops from 12px to 10px so the 24px spinner
+   doesn't push the button taller than its resting height. Markup pairs
+   .button__spinner with a plain "Loading" text label beside it, matching
+   Figma — see the header note above. */
+.button--loading {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: progress;
+}
+
+/* Small + Loading — same trim, scaled down: 6px vertical padding drops to
+   4px so the spinner doesn't grow the small button's height. */
+.button--small.button--loading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* CSS fallback spinner. The real component uses an exported SVG glyph —
+   drop that in as an <svg>/icon if you want an exact match; this keyframe
+   version is here so button.css has no asset dependency.
+   box-sizing: border-box is required here — without it the 2px border
+   adds onto the 24px content box (rendering at 28px), which pushes both
+   Big and Small loading buttons taller than their resting height. */
+.button__spinner {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: block;
+  animation: button-spin 0.6s linear infinite;
+}
+
+@keyframes button-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Width is layout-specific, not part of the button itself, so it's left
+   off the base class. The sampled instance was a fixed 336px — use a
+   modifier or set width on the parent where you place the button. */
+.button--block { width: 100%; }
+
+
+/* =============================================================
+   card-bestseller.css
+   Bestseller card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-Bestseller" (node 26:6855)
+
+   A 336px card: a striped YELLOW header ("Bestseller" + "See all" pill)
+   over 4 stacked Bet-elements separated by dividers. Same shell as
+   card-live but with the brand-yellow header (dark text) and no tab row.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  → #ffd200
+   content/heading  → --content-heading  → #101a28
+   surface/base     → --surface-base     → #ffffff
+   border/subtle    → --border-subtle    → #cbd3de
+
+   NOTE: header stripes approximate Figma's WebGPU shader with a
+   repeating-linear-gradient (45°, 15px, darker-yellow at 39%).
+
+   REUSE: .bet-element (x4) styles itself; this file provides the card
+   shell, yellow header, and divider lines.
+   ============================================================= */
+
+.card-bestseller {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped yellow header */
+.card-bestseller__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(215, 179, 0, 0) 0,
+    rgba(215, 179, 0, 0) 15px,
+    rgba(215, 179, 0, 0.39) 15px,
+    rgba(215, 179, 0, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.card-bestseller__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+.card-bestseller__see-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 0;
+  cursor: pointer;
+}
+.card-bestseller__see-all-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+.card-bestseller__see-all-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--content-heading, #101a28);
+}
+
+/* Bet-element list with dividers between */
+.card-bestseller__bets {
+  display: flex;
+  flex-direction: column;
+}
+.card-bestseller__bets .bet-element:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
+
+
+/* =============================================================
+   card-betbuilder.css
+   Betbuilder card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-betbuilder" (node 1:822)
+
+   A 268px card: a striped green header with the match title, a list of
+   bet selections (green dots joined by connector lines) in a subtle
+   panel, and a footer with combined odds + an Add button.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   green/betbuilder → --green-betbuilder → #a8cf1e
+   surface/subtle   → --surface-subtle   → #eef1f5
+   content/heading  → --content-heading  → #101a28
+   intent/brand/bg  → --intent-brand-bg  → #ffd200 (via reused .button--small)
+
+   NOTE: Figma's green header uses a WebGPU shader for the diagonal
+   stripes. That can't render in plain HTML, so the stripes are
+   approximated here with a repeating-linear-gradient — visually
+   equivalent and works everywhere.
+
+   REUSE: the "Add" button reuses .button.button--small from button.css
+   (yellow brand fill, black text). The soccer/sport icon is a dropped-in
+   asset (assets/sports/soccer.svg).
+   ============================================================= */
+
+.card-betbuilder {
+  box-sizing: border-box;
+  position: relative;
+  width: 268px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(16, 26, 40, 0.05);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Green striped header band */
+.card-betbuilder__header {
+  height: 50px;
+  background-color: var(--green-betbuilder, #a8cf1e);
+  background-image: repeating-linear-gradient(
+    62deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0) 14px,
+    rgba(255, 255, 255, 0.21) 14px,
+    rgba(255, 255, 255, 0.21) 28px
+  );
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+}
+
+.card-betbuilder__title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.card-betbuilder__title-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.card-betbuilder__title-text {
+  font-size: 14px;
+  font-weight: 600;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: normal;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+/* Selections panel */
+.card-betbuilder__body {
+  padding: 4px 12px 12px;
+  border-left: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-right: 1px solid var(--green-betbuilder, #a8cf1e);
+}
+
+.card-betbuilder__selections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: var(--surface-subtle, #eef1f5);
+}
+
+.card-betbuilder__selection {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+}
+
+/* Green dot marker */
+.card-betbuilder__dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background-color: var(--green-betbuilder, #a8cf1e);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Connector line between consecutive dots */
+.card-betbuilder__selection:not(:last-child) .card-betbuilder__dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 13px;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 21px;
+  background-color: rgba(168, 207, 30, 0.3);
+}
+
+.card-betbuilder__selection-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #6b7480;
+}
+.card-betbuilder__selection-text strong {
+  font-weight: 400;
+  color: var(--content-heading, #101a28);
+}
+
+/* Footer: combined odds + Add button */
+.card-betbuilder__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-top: 0;
+  border-radius: 0 0 16px 16px;
+}
+.card-betbuilder__odds {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+}
+.card-betbuilder__footer-spacer {
+  flex: 1 0 0;
+}
+
+/* Figma: the selections block overlaps the header by 14px (header has a
+   -14px bottom margin), so the visible green strip is ~36px, not the full
+   50px. Pull the body up and round its top corners over the green. */
+.card-betbuilder__body {
+  margin-top: -14px;
+  border-top: 1px solid var(--green-betbuilder, #a8cf1e);
+  border-radius: 18px 18px 0 0;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =============================================================
+   card-hotbets.css
+   Hot bets card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-HotBets" (node 26:6854)
+
+   A 336px card: yellow striped header ("Hot bets" + "N this week"
+   pill, no chevron), 4 Hotbets rows, then a footer with combi-odds
+   info + a wide Add button.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg   → --intent-brand-bg   → #ffd200
+   content/heading   → --content-heading   → #101a28
+   content/secondary → --content-secondary → #6b7480
+   text/primary      → --text-primary      → #000000
+   surface/base      → --surface-base      → #ffffff
+
+   NOTE: header stripes approximate Figma's WebGPU shader with a
+   repeating-linear-gradient (45°, 15px, darker-yellow at 39%).
+
+   REUSE: .hotbets (x4) and .button.button--small (Add). This file
+   provides the shell, yellow header, and footer layout.
+   ============================================================= */
+
+.card-hotbets {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped yellow header (same as bestseller) */
+.card-hotbets__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(215, 179, 0, 0) 0,
+    rgba(215, 179, 0, 0) 15px,
+    rgba(215, 179, 0, 0.39) 15px,
+    rgba(215, 179, 0, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+.card-hotbets__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+.card-hotbets__pill {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.card-hotbets__pill-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+}
+
+/* Hotbets rows list */
+.card-hotbets__rows {
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+}
+/* rows already carry their own bottom divider; drop it on the last one */
+.card-hotbets__rows .hotbets:last-child {
+  border-bottom: 0;
+}
+
+/* Footer: combi-odds info + Add button */
+.card-hotbets__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px 12px;
+}
+.card-hotbets__footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+.card-hotbets__footer-label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+.card-hotbets__footer-odds {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--text-primary, #000000);
+}
+/* wide Add button fills its side of the footer */
+.card-hotbets__footer .button {
+  flex-shrink: 0;
+}
+
+
+/* =============================================================
+   card-live.css
+   Live card — IW Design Library (ReDesign 2026)
+   Source: Figma "Card-Live" (node 26:6401)
+
+   A 336px card that composes existing components: a striped red header
+   ("Live now" + "See all" pill), a row of 5 Tabs-big, then 3
+   Bet-elements separated by dividers.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/danger/base → --intent-danger-base → #bb1b1b
+   surface/base       → --surface-base       → #ffffff
+   border/subtle      → --border-subtle      → #cbd3de
+
+   NOTE: Figma's header uses a WebGPU shader for the diagonal stripes;
+   approximated here with a repeating-linear-gradient (45°, 15px, 39%
+   white) — visually equivalent, works everywhere.
+
+   REUSE: .tab-big (x5) and .bet-element (x3) style themselves; this file
+   only provides the card shell, header, tab row, and divider lines.
+   ============================================================= */
+
+.card-live {
+  box-sizing: border-box;
+  width: 336px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-base, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(16, 26, 40, 0.08);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Striped red header */
+.card-live__header {
+  position: relative;
+  height: 64px;
+  background-color: var(--intent-danger-base, #bb1b1b);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0) 15px,
+    rgba(255, 255, 255, 0.39) 15px,
+    rgba(255, 255, 255, 0.39) 30px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.card-live__title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.19px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
+
+.card-live__see-all {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.22);
+  border: 0;
+  cursor: pointer;
+}
+.card-live__see-all-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
+.card-live__see-all-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--surface-base, #ffffff);
+}
+
+/* Row of 5 Tabs-big */
+.card-live__tabs {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
+
+/* Bet-element list with dividers between */
+.card-live__bets {
+  display: flex;
+  flex-direction: column;
+}
+.card-live__bets .bet-element:not(:last-child) {
+  border-bottom: 1px solid var(--border-subtle, #cbd3de);
+}
+
+/* 5 tabs (80px each) exceed the 336px card, so scroll horizontally
+   like Figma. Hide the scrollbar for a clean look. */
+.card-live__tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.card-live__tabs::-webkit-scrollbar {
+  display: none;
+}
+.card-live__tabs .tab-big {
+  flex-shrink: 0;
+}
+
+
+/* =============================================================
+   chip.css
+   Chip — IW Design Library (ReDesign 2026)
+   Source: Figma "Chip" component set (node 1:650)
+   States: Default · Hover
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/subtle   → --surface-subtle   → #eef1f5
+   content/heading  → --content-heading  → #101a28
+
+   The default white background is still a raw hex value in Figma — no
+   token. Icon is an exported SVG (calendar, 22px); size it with
+   .chip__icon and drop the <svg>/<img> in.
+   ============================================================= */
+
+.chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background-color: #ffffff; /* raw — no surface/default token in Figma */
+  box-shadow: 0 1px 1px rgba(16, 26, 40, 0.06);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+/* Hover — :hover for real interaction, --hover to force the state */
+.chip:hover,
+.chip--hover {
+  background-color: var(--surface-subtle, #eef1f5);
+}
+
+.chip__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: block;
+  color: var(--content-heading, #101a28);
+}
+
+.chip__label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+
+
+/* =============================================================
+   dropdown.css
+   Dropdown / select field — IW Design Library (ReDesign 2026)
+   Source: Figma "Input - Dropdown" component set (node 1:181)
+   States: Enabled · Focused · Open · Error · Disabled  ×  Empty / Filled
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   field/border        → --field-border        #c3c3c3
+   field/bg-disabled   → --field-bg-disabled   #f1f1f1
+   field/icon-disabled → --field-icon-disabled #979797
+   text/primary        → --text-primary        #000000
+   text/value          → --text-value          #333333
+   text/placeholder    → --text-placeholder    #939393
+   intent/danger/base  → --intent-danger-base  #bb1b1b
+   focus/ring          → --focus-ring          #2194ff
+
+   Chevron is a real asset swapped in markup: chevron-down (closed) /
+   chevron-up (Open). The Disabled state shows the real lock icon.
+
+   Markup this expects:
+     <div class="dropdown">
+       <label class="dropdown__label">Label</label>
+       <button class="dropdown__field" type="button">
+         <span class="dropdown__value dropdown__value--placeholder">Please select...</span>
+         <svg class="dropdown__icon">…chevron…</svg>
+       </button>
+       <p class="dropdown__helper">Text message</p>
+     </div>
+   Drop dropdown__value--placeholder when a value is chosen. Add --open,
+   --error, or --disabled on .dropdown for those states.
+   ============================================================= */
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+}
+
+.dropdown__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.dropdown__field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--field-border, #c3c3c3);
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown__value {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+.dropdown__value--placeholder {
+  color: var(--text-placeholder, #939393);
+}
+
+.dropdown__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--text-value, #333333);
+}
+
+.dropdown__helper {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.dropdown__lock {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--field-icon-disabled, #979797);
+}
+
+/* <p>/<label> default margins would break the 4px column gap — reset so
+   the helper sits a flat 4px below the field. */
+.dropdown .dropdown__helper,
+.dropdown .dropdown__label {
+  margin: 0;
+}
+
+/* Focused — adds the 2px ring, keeps the grey border (matches Figma) */
+.dropdown__field:focus-within,
+.dropdown--focused .dropdown__field {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Error */
+.dropdown--error .dropdown__field {
+  border-color: var(--intent-danger-base, #bb1b1b);
+}
+.dropdown--error .dropdown__helper {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Disabled */
+.dropdown--disabled .dropdown__field {
+  background-color: var(--field-bg-disabled, #f1f1f1);
+  border-color: var(--field-border, #c3c3c3);
+  cursor: not-allowed;
+}
+.dropdown--disabled .dropdown__value {
+  color: var(--text-placeholder, #939393);
+}
+
+
+/* =============================================================
+   header.css
+   Header — IW Design Library (ReDesign 2026)
+   Source: Figma "Header" component set (node 1:782)
+   Variants: Sub Page · Account · Register
+
+   Yellow app bar (intent/brand/bg), 360x56, that reuses existing
+   components/icons rather than restyling them:
+     - Sub Page:  back chevron (chevron-left) · logo · close (cross-big)
+     - Account:   logo · balance (€) + avatar circle
+     - Register:  logo · Login (.secondary-button) + Register (.button--small)
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg        → --intent-brand-bg        #ffd200
+   intent/brand/bg-hover  → --intent-brand-bg-hover  #ecc200
+   content/heading        → --content-heading        #101a28
+   intent/brand/fg        → --intent-brand-fg         #000000
+
+   Icons (chevron-left, cross-big, avatar) and the logo are dropped-in
+   assets; the classes below only size/position the slots.
+   ============================================================= */
+
+.header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 360px;
+  max-width: 375px;
+  height: 56px;
+  padding: 14px 12px;
+  background-color: var(--intent-brand-bg, #ffd200);
+  font-family: "Inter", sans-serif;
+}
+
+/* Logo (interwetten wordmark) */
+.header__logo {
+  height: 19px;
+  width: 116px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Sub Page: fixed-width side slots so the logo stays centred */
+.header__side {
+  display: flex;
+  align-items: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+.header__side--right {
+  justify-content: flex-end;
+}
+
+/* Icon buttons (back / close) */
+.header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--intent-brand-fg, #000000);
+}
+.header__icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* Account: balance + avatar */
+.header__account {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.header__balance {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+}
+.header__avatar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background-color: var(--intent-brand-bg-hover, #ecc200);
+  border: 1.5px solid rgba(16, 26, 40, 0.14);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.header__avatar-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--intent-brand-fg, #000000);
+}
+
+/* Register: button group (buttons reuse .secondary-button / .button--small) */
+.header__buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Register variant's primary button: Figma shows it black (intent/brand/fg
+   bg, light text), scoped to the header so the global .button is unchanged. */
+.header .button--small {
+  background-color: var(--intent-brand-fg, #000000);
+  color: var(--intent-danger-bg, #fdf3f3);
+}
+.header .button--small:hover {
+  background-color: var(--intent-brand-fg, #000000);
+}
+
+
+/* =============================================================
+   hotbets.css
+   Hotbets row — IW Design Library (ReDesign 2026)
+   Source: Figma "Hotbets" (node 1:926)
+
+   A 60px selectable row: sport icon + (team name / subtitle) + an
+   odds pill. The odds pill REUSES .odds-simple from odds-simple.css.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   field/bg-disabled → --field-bg-disabled → #f1f1f1 (bottom divider)
+   text/primary      → --text-primary      → #000000
+   content/secondary → --content-secondary → #6b7480
+
+   REUSE: .odds-simple for the odds pill. The sport icon is a dropped-in
+   asset (assets/sports/*.svg), sized 24px.
+   ============================================================= */
+
+.hotbets {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 12px;
+  border-bottom: 1px solid var(--field-bg-disabled, #f1f1f1);
+  font-family: "Inter", sans-serif;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hotbets__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.hotbets__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.hotbets__title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary, #000000);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hotbets__subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+
+/* =============================================================
+   input-phone-number.css
+   Phone number input — IW Design Library (ReDesign 2026)
+   Source: Figma "InputPhoneNumber" component set (node 1:369)
+   States: Enabled · Focused Area Code · Focused · Error · Disabled
+           ×  Empty / Filled
+
+   Composition: an area-code dropdown (fixed 110px) + a mobile-number
+   input that flexes to fill the row. This file is self-contained, but the
+   field styling intentionally matches input.css and dropdown.css — if you
+   already ship those, you can delete the field rules here and reuse them.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   field/border        → --field-border        #c3c3c3
+   field/bg-disabled   → --field-bg-disabled   #f1f1f1
+   text/primary        → --text-primary        #000000
+   text/value          → --text-value          #333333
+   text/placeholder    → --text-placeholder    #939393
+   intent/danger/base  → --intent-danger-base  #bb1b1b
+   focus/ring          → --focus-ring          #2194ff
+
+   Markup this expects:
+     <div class="phone-input">
+       <div class="phone-input__area-code">
+         <label class="phone-input__label">Area code</label>
+         <button class="phone-input__field" type="button">
+           <span class="phone-input__value">+43</span>
+           <svg class="phone-input__icon">…chevron…</svg>
+         </button>
+         <p class="phone-input__helper">Text message over two lines.</p>
+       </div>
+       <div class="phone-input__number">
+         <label class="phone-input__label">Mobile number</label>
+         <div class="phone-input__field">
+           <input class="phone-input__value" placeholder="Placeholder">
+         </div>
+         <p class="phone-input__helper">Text message</p>
+       </div>
+     </div>
+   Add --error or --disabled on .phone-input for those states.
+   ============================================================= */
+
+.phone-input {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-family: "Inter", sans-serif;
+}
+
+.phone-input__area-code {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.phone-input__number {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.phone-input__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.phone-input__field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--field-border, #c3c3c3);
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Works as a <span> (area code) or <input> (number) */
+.phone-input__value {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+.phone-input__value::placeholder {
+  color: var(--text-placeholder, #939393);
+}
+
+.phone-input__icon,
+.phone-input__lock {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.phone-input__helper {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+/* Focused — adds the 2px ring on whichever field has focus */
+.phone-input__field:focus-within,
+.phone-input--focused .phone-input__number .phone-input__field,
+.phone-input--focused-area-code .phone-input__area-code .phone-input__field {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Error — in Figma the error border + red helper apply to the number field */
+.phone-input--error .phone-input__number .phone-input__field {
+  border-color: var(--intent-danger-base, #bb1b1b);
+}
+.phone-input--error .phone-input__number .phone-input__helper {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Disabled — both fields */
+.phone-input--disabled .phone-input__field {
+  background-color: var(--field-bg-disabled, #f1f1f1);
+  border-color: var(--field-border, #c3c3c3);
+  cursor: not-allowed;
+}
+.phone-input--disabled .phone-input__value {
+  color: var(--text-placeholder, #939393);
+  cursor: not-allowed;
+}
+
+/* Reset browser default margin on the <input> so the helper sits a flat
+   4px below the field (matches Figma), same as the <button> side. */
+.phone-input__value {
+  margin: 0;
+}
+
+/* Lock icon (disabled state) — Figma uses the disabled field-icon grey. */
+.phone-input__lock {
+  color: var(--field-icon-disabled, #979797);
+}
+
+/* Kill default <p>/<label> margins so the column's 4px gap controls
+   spacing between label, field, and helper (matches Figma). */
+.phone-input .phone-input__helper,
+.phone-input .phone-input__label {
+  margin: 0;
+}
+
+/* Pin both fields to the same height regardless of element type
+   (<button> vs <input> render at different default heights otherwise).
+   44px content box + 1px border top/bottom = matches Figma. */
+.phone-input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+/* =============================================================
+   input-small.css
+   Small input — IW Design Library (ReDesign 2026)
+   Source: Figma "Input Small" component (node 1:1013)
+   States: Default only — Figma defines this as a single fixed component,
+   not a variant set, so there's no Enabled/Focused/Error/Disabled or
+   Empty/Filled axis to implement here (unlike input.css's "InputText"
+   component set).
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   text/secondary  → --text-secondary  #535353
+
+   Figma binds both the border and the text colour to text/secondary —
+   this component doesn't reference the field/border, text/value, or
+   text/placeholder tokens that input.css uses. It reads as a visually
+   distinct, compact pattern (right-aligned value in a tight box, e.g. an
+   inline stake field), not simply a smaller InputText.
+
+   Markup this expects:
+     <div class="input-small">
+       <span class="input-small__value">Stake</span>
+     </div>
+   No label, helper text, or states are defined on the Figma component.
+   It also has no trailing/visibility icon — left out here rather than
+   copying Input - Text's icon slot, since that slot's API (generic icon
+   vs. password-visibility toggle) is still an open question there; revisit
+   this file once that's settled.
+   ============================================================= */
+
+.input-small {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--text-secondary, #535353);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  /* width is layout-specific (sampled instance was 98px) — set it on the
+     parent or a modifier, not here. */
+}
+
+.input-small__value {
+  flex: 1 0 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-secondary, #535353);
+}
+
+
+/* =============================================================
+   input.css
+   Text input — IW Design Library (ReDesign 2026)
+   Source: Figma "InputText" component set (node 1:89)
+   States: Enabled · Focused · Error · Disabled  ×  Empty / Filled
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   field/border        → --field-border        #c3c3c3
+   field/bg-disabled   → --field-bg-disabled   #f1f1f1
+   text/primary        → --text-primary        #000000
+   text/value          → --text-value          #333333
+   text/placeholder    → --text-placeholder    #939393
+   intent/danger/base  → --intent-danger-base  #bb1b1b
+   focus/ring          → --focus-ring          #2194ff
+
+   Markup this expects:
+     <div class="input">
+       <label class="input__label">Label</label>
+       <div class="input__field">
+         <input class="input__control" placeholder="Placeholder">
+       </div>
+       <p class="input__helper">Text message</p>
+     </div>
+   Add --error / --disabled on .input for those states. Focus is handled
+   automatically via :focus-within.
+   ============================================================= */
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Inter", sans-serif;
+}
+
+.input__label {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.input__field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--field-border, #c3c3c3);
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.input__control {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+.input__control::placeholder {
+  color: var(--text-placeholder, #939393);
+}
+
+.input__helper {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-primary, #000000);
+}
+
+.input__lock {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Focused — grey border stays, 2px blue ring is added (matches Figma).
+   :focus-within fires on real keyboard/mouse focus; --focused forces it. */
+.input__field:focus-within,
+.input--focused .input__field {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Error */
+.input--error .input__field {
+  border-color: var(--intent-danger-base, #bb1b1b);
+}
+.input--error .input__helper {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Disabled */
+.input--disabled .input__field {
+  background-color: var(--field-bg-disabled, #f1f1f1);
+  border-color: var(--field-border, #c3c3c3);
+}
+.input--disabled .input__control {
+  color: var(--text-placeholder, #939393);
+  cursor: not-allowed;
+}
+
+/* Pin the field to a fixed height so it matches Figma regardless of the
+   <input>'s default rendering. 44px content + 1px border top/bottom = 46px.
+   Fixed height + align-items:center handles vertical centring, so the
+   vertical padding is removed. */
+.input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Pin the field to a fixed height so it matches Figma regardless of the
+   <input>'s default rendering. 44px content + 1px border top/bottom = 46px.
+   Fixed height + align-items:center handles vertical centring, so the
+   vertical padding is removed. */
+.input__field {
+  height: 46px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Kill default <p>/<label> margins so the column gap controls spacing
+   between label, field, and helper (matches Figma). */
+.input .input__helper,
+.input .input__label {
+  margin: 0;
+}
+
+/* Disabled lock icon — Figma's disabled field-icon grey. */
+.input__lock {
+  color: var(--field-icon-disabled, #979797);
+}
+
+/* Kill default <p>/<label> margins so the column gap controls spacing. */
+.input .input__helper,
+.input .input__label {
+  margin: 0;
+}
+
+/* Trailing eye/visibility icon (Enabled, Focused, Error) */
+.input__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--intent-brand-fg, #000000);
+}
+
+/* Trailing eye/visibility icon (Enabled, Focused, Error) */
+.input__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--intent-brand-fg, #000000);
+}
+
+
+/* =============================================================
+   method-item.css
+   Payment/verification method row — IW Design Library (ReDesign 2026)
+   Source: Figma "Method-item" component set (node 1:1506)
+   States: Default · Hover · Focused
+
+   DESIGN TOKENS
+   Figma variable    →  CSS custom property  (value)
+   surface/subtle    →  --surface-subtle     (#EEF1F5)
+   surface/base      →  --surface-base       (#FFFFFF)
+   text/value        →  --text-value         (#333333)
+   focus/ring        →  --focus-ring         (#2194FF)
+
+   Hover and Focused both use a raw #dee3ea background in Figma — no
+   token matches it (checked tokens/semantic.css: the closest are
+   --surface-subtle #eef1f5 and --border-subtle #cbd3de, neither the
+   same value), so it's hardcoded here rather than forced onto an
+   unrelated token.
+
+   This is a real interactive list row, not a persistent "selected"
+   state — Figma's Hover and Focused variants map directly onto mouse
+   hover and keyboard focus (Focused adds a visible 2px ring, exactly
+   like button.css's :focus-visible pattern, and at the same 14px
+   radius as the row itself), so both are implemented as real
+   pseudo-classes on .method-item rather than forced-state modifiers.
+
+   The row's leading logo and trailing chevron are dropped-in assets
+   (icon/image), not re-styled here — .method-item__logo and
+   .method-item__icon only provide the sizing/position slot.
+
+   Markup this expects:
+     <div class="method-item">
+       <div class="method-item__row">
+         <div class="method-item__logo"><img src="…" alt=""></div>
+         <div class="method-item__body">
+           <span class="method-item__title">ID Austria</span>
+           <span class="method-item__icon"><svg>…chevron…</svg></span>
+         </div>
+       </div>
+     </div>
+   Width is layout-specific (sampled instance was 336px) — set it on the
+   parent, not here.
+   ============================================================= */
+
+.method-item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 64px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+/* Hover / Focused — real interaction, not a persistent selected state.
+   :focus-visible keeps the ring off mouse clicks and on for keyboard nav. */
+.method-item:hover,
+.method-item:focus-visible {
+  background-color: #dee3ea; /* raw — no matching token in Figma */
+  outline: none;
+}
+
+.method-item:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+.method-item__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.method-item__logo {
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: var(--surface-base, #ffffff);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.method-item__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.method-item__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-value, #333333);
+}
+
+.method-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+/* Verification/brand logo image inside the 36px tile */
+.method-item__logo-img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Chevron sizing (matches Figma's 16px trailing icon) */
+.method-item__chevron { width: 16px; height: 16px; display: block; color: var(--text-value, #333333); }
+
+
+/* =============================================================
+   odds-horizontal.css
+   Odds (horizontal) — IW Design Library (ReDesign 2026)
+   Source: Figma "OddsHorizontal" component set (node 1:625)
+   States: Default · Selected · Locked · Odds up · Odds down
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg      → --intent-brand-bg      #ffd200
+   intent/success/base  → --intent-success-base  #2ea949
+   intent/danger/base   → --intent-danger-base   #bb1b1b
+   text/primary         → --text-primary         #000000
+   content/secondary    → --content-secondary    #6b7480
+   content/muted        → --content-muted        #a2aab6
+   surface/subtle*      → --surface-subtle       #eef1f5
+
+   * In Figma the default background was a raw hex (#eef1f5), not the
+     surface/subtle token — even though the value is identical. Mapped
+     to the token here for consistency; see the design-system notes.
+   ============================================================= */
+
+.odds-horizontal {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 10px;
+  border-radius: 8px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  /* width is grid/layout-specific (sampled instance was ~101px) — set it
+     on the parent or a modifier, not here. */
+}
+
+.odds-horizontal__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+.odds-horizontal__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary, #000000);
+}
+
+.odds-horizontal__lock {
+  width: 13px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* Selected */
+.odds-horizontal--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
+.odds-horizontal--selected .odds-horizontal__label,
+.odds-horizontal--selected .odds-horizontal__value {
+  color: var(--text-primary, #000000);
+}
+
+/* Odds up — 2px accent on the top edge */
+.odds-horizontal--up {
+  border-top: 2px solid var(--intent-success-base, #2ea949);
+}
+.odds-horizontal--up .odds-horizontal__value {
+  color: var(--intent-success-base, #2ea949);
+}
+
+/* Odds down — 2px accent on the bottom edge */
+.odds-horizontal--down {
+  border-bottom: 2px solid var(--intent-danger-base, #bb1b1b);
+}
+.odds-horizontal--down .odds-horizontal__value {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Locked */
+.odds-horizontal--locked .odds-horizontal__value {
+  color: var(--content-muted, #a2aab6);
+}
+
+
+/* =============================================================
+   odds-simple.css
+   Odds (simple) — IW Design Library (ReDesign 2026)
+   Source: Figma "Odds - simple" component set (node 1:727)
+   States: Default · Selected (Figma property1: Default · Variant2)
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  #ffd200
+   text/primary     → --text-primary     #000000
+   surface/subtle   → --surface-subtle   #eef1f5
+
+   This is the simplest odds variant in the library: a single value, no
+   separate label, and no Locked / Odds up / Odds down states like
+   odds-horizontal.css and odds-vertical.css — Figma only defines two
+   states here, and the value colour doesn't change between them.
+   ============================================================= */
+
+.odds-simple {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  height: 40px;
+  padding: 8px 0;
+  border-radius: 10px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+}
+
+.odds-simple__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary, #000000);
+  text-align: center;
+}
+
+/* Selected — Figma property1: Variant2. Background swaps to the brand
+   token; the value stays --text-primary in both states (no colour
+   change here, unlike the Selected state on the horizontal/vertical
+   siblings). */
+.odds-simple--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
+
+
+/* =============================================================
+   odds-vertical.css
+   Odds (vertical) — IW Design Library (ReDesign 2026)
+   Source: Figma "Odds - vertical" component set (node 1:599)
+   States: Default · Selected · Locked · Odds up · Odds down
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg      → --intent-brand-bg      #ffd200
+   intent/success/base  → --intent-success-base  #2ea949
+   intent/danger/base   → --intent-danger-base   #bb1b1b
+   text/primary         → --text-primary         #000000
+   content/secondary    → --content-secondary    #6b7480
+   content/muted        → --content-muted        #a2aab6
+   surface/subtle       → --surface-subtle       #eef1f5
+
+   Width is grid/layout-specific (Figma cell is 96px) — set it on the
+   parent/grid or per-instance, not on the base class (bet-element reuses
+   these classes). The Locked state shows the real lock icon (12x12,
+   currentColor) in place of the label.
+   ============================================================= */
+
+.odds-vertical {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 8px 0;
+  border-radius: 10px;
+  background-color: var(--surface-subtle, #eef1f5);
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.odds-vertical__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+.odds-vertical__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--text-primary, #000000);
+}
+
+.odds-vertical__lock {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Selected */
+.odds-vertical--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+}
+.odds-vertical--selected .odds-vertical__label,
+.odds-vertical--selected .odds-vertical__value {
+  color: var(--text-primary, #000000);
+}
+
+/* Odds up — 2px accent on the top edge */
+.odds-vertical--up {
+  border-top: 2px solid var(--intent-success-base, #2ea949);
+}
+.odds-vertical--up .odds-vertical__value {
+  color: var(--intent-success-base, #2ea949);
+}
+
+/* Odds down — 2px accent on the bottom edge */
+.odds-vertical--down {
+  border-bottom: 2px solid var(--intent-danger-base, #bb1b1b);
+}
+.odds-vertical--down .odds-vertical__value {
+  color: var(--intent-danger-base, #bb1b1b);
+}
+
+/* Locked */
+.odds-vertical--locked .odds-vertical__value {
+  color: var(--content-muted, #a2aab6);
+}
+.odds-vertical--locked .odds-vertical__lock {
+  color: var(--content-muted, #a2aab6);
+  margin-bottom: 4px;
+}
+
+
+/* =============================================================
+   secondary-button.css
+   Secondary Button — IW Design Library (ReDesign 2026)
+   Source: Figma "Secondary Buttons" component set (node 1:732)
+   States: Default · Hover · Clicked/Pressed · Focused · Disabled · Loading
+
+   DESIGN TOKENS
+   Figma variable         →  CSS custom property     (value)
+   text/primary           →  --text-primary          (#000000)
+   text/secondary         →  --text-secondary        (#535353)
+   text/placeholder       →  --text-placeholder      (#939393)
+   intent/brand/fg        →  --intent-brand-fg       (#000000)
+   focus/ring             →  --focus-ring            (#2194FF)
+
+   Each rule references the token with the Figma value as a fallback, so
+   this file works standalone AND picks up tokens/semantic.css (colors)
+   and tokens/type.css (type scale) when they're loaded. If your exported
+   token names differ (slashes are usually flattened to hyphens by the
+   exporter), rename the custom properties below to match.
+
+   This is a single-size, outline-style button — border only, no fill,
+   and no Big/Small modifier like button.css. Border color and label
+   color both change per state; padding only changes for Loading.
+   ============================================================= */
+
+.secondary-button {
+  /* layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+
+  /* shape */
+  border: 1px solid var(--text-primary, #000000);
+  border-radius: 42px;
+  background: transparent;
+
+  /* typography */
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  /* color */
+  color: var(--intent-brand-fg, #000000);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover */
+.secondary-button:hover {
+  border-color: var(--text-secondary, #535353);
+  color: var(--text-secondary, #535353);
+}
+
+/* Clicked/Pressed — Figma shows no visual change from Default (same
+   border and label color); the browser's own :active affordance is
+   enough, no rule needed. */
+
+/* Focused (keyboard only) — 2px ring that follows the pill shape.
+   :focus-visible keeps it off mouse clicks and on for keyboard nav.
+   Figma draws this as a separate absolute overlay (inset -1px, 26px
+   radius); the inset box-shadow below produces the same ring at the
+   button's own 42px radius instead, matching the convention used
+   elsewhere in this design system (see button.css). */
+.secondary-button:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--focus-ring, #2194ff);
+}
+
+/* Disabled */
+.secondary-button:disabled,
+.secondary-button[aria-disabled="true"] {
+  border-color: var(--text-placeholder, #939393);
+  color: var(--text-placeholder, #939393);
+  cursor: not-allowed;
+}
+
+/* Loading
+   Vertical padding drops from 6px to 4px so the 24px spinner doesn't
+   push the button taller than its resting height. Markup pairs
+   .secondary-button__spinner with a plain "Loading" text label beside
+   it, with a 10px gap between them (per Figma) — e.g. `<span
+   class="secondary-button__spinner"></span>Loading`. */
+.secondary-button--loading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  gap: 10px;
+  cursor: progress;
+}
+
+/* CSS fallback spinner. The real component uses an exported SVG glyph —
+   drop that in as an <svg>/icon if you want an exact match; this keyframe
+   version is here so secondary-button.css has no asset dependency. */
+.secondary-button__spinner {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: block;
+  animation: secondary-button-spin 0.6s linear infinite;
+}
+
+@keyframes secondary-button-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* =============================================================
+   tabs-big.css
+   Tabs (big) — IW Design Library (ReDesign 2026)
+   Source: Figma "Tabs-big" component (node 1:858)
+   States: Unselected · Selected
+
+   A vertical tab: count number on top, a 24px icon, a label below,
+   and a 2px full-width bottom bar when selected.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary  → --content-secondary  #6b7480
+   text/primary       → --text-primary       #000000
+
+   The icon is a SLOT — supply a real sport icon (assets/sports/*.svg),
+   sized 24x24. Sport icons keep their own colours (do NOT use
+   currentColor here). Compose several tabs in a flex row for a bar;
+   each carries its own .tab-big--selected state.
+
+   Markup this expects:
+     <div class="tab-big tab-big--selected">
+       <span class="tab-big__count">6</span>
+       <svg class="tab-big__icon">…</svg>
+       <span class="tab-big__label">Football</span>
+     </div>
+   ============================================================= */
+
+.tab-big {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 80px;
+  height: 79px;
+  padding: 12px 16px 8px;
+  cursor: pointer;
+}
+
+.tab-big__count {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+.tab-big__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.tab-big__label {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--content-secondary, #6b7480);
+}
+
+/* Selected */
+.tab-big--selected .tab-big__count,
+.tab-big--selected .tab-big__label {
+  color: var(--text-primary, #000000);
+}
+.tab-big--selected .tab-big__label {
+  font-weight: 500;
+}
+.tab-big--selected::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary, #000000);
+}
+
+
+/* =============================================================
+   tabs-small.css
+   Tabs (small) — IW Design Library (ReDesign 2026)
+   Source: Figma "Tabs-small" component (node 1:1006)
+   States: Unselected · Selected
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   content/secondary  → --content-secondary  #6b7480
+   content/heading    → --content-heading    #101a28
+   intent/brand/bg    → --intent-brand-bg    #ffd200
+
+   This is a single tab item. Compose several in a flex row to build a
+   tab bar; each tab carries its own .tab-small--selected state.
+
+   Markup this expects:
+     <div class="tab-small tab-small--selected">
+       <span class="tab-small__label">Bet builder</span>
+     </div>
+   ============================================================= */
+
+.tab-small {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 30px;
+  padding: 0 8px 8px;
+  cursor: pointer;
+}
+
+.tab-small__label {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--content-secondary, #6b7480);
+}
+
+.tab-small--selected {
+  border-bottom: 3px solid var(--intent-brand-bg, #ffd200);
+}
+.tab-small--selected .tab-small__label {
+  color: var(--content-heading, #101a28);
+}
+
+
+/* =============================================================
+   toast.css
+   Toast — IW Design Library (ReDesign 2026)
+   Source: Figma "Toast" (node 1:805)
+
+   A 338px black pill: success checkmark icon + message text.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/fg     → --intent-brand-fg     → #000000 (background)
+   surface/base        → --surface-base        → #ffffff (text)
+   intent/success/base → --intent-success-base → #2ea949 (check icon)
+
+   The check icon is a dropped-in asset (assets/icons/checkmark-2.svg),
+   16px, coloured via currentColor.
+   ============================================================= */
+
+.toast {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 338px;
+  padding: 16px 24px;
+  border-radius: 6px;
+  background-color: var(--intent-brand-fg, #000000);
+  font-family: "Inter", sans-serif;
+}
+
+.toast__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--intent-success-base, #2ea949);
+}
+
+.toast__text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--surface-base, #ffffff);
+  white-space: nowrap;
+}
+
+
+/* =============================================================
+   verified-badge.css
+   Verified / Unverified badge — IW Design Library (ReDesign 2026)
+   Source: Figma "Badges" component set (node 1:669)
+   States: Verified · Unverified
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/success/bg     → --intent-success-bg     #f0fbf3
+   intent/success/border → --intent-success-border #a4e6b3
+   intent/success/fg     → --intent-success-fg     #1c652c
+   intent/danger/bg      → --intent-danger-bg      #fdf3f3
+   intent/danger/border  → --intent-danger-border  #f1b4b4
+   intent/danger/base    → --intent-danger-base    #bb1b1b
+
+   Note: the verified text uses intent/success/fg, but the unverified text
+   uses intent/danger/base (there is no intent/danger/fg token). See notes.
+   Icon is an exported SVG — size it with .badge__icon.
+
+   Markup this expects:
+     <span class="badge badge--verified">
+       <svg class="badge__icon">…</svg>Verified
+     </span>
+   ============================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.badge__icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* Verified */
+.badge--verified {
+  background-color: var(--intent-success-bg, #f0fbf3);
+  border-color: var(--intent-success-border, #a4e6b3);
+  color: var(--intent-success-fg, #1c652c);
+}
+
+/* Unverified */
+.badge--unverified {
+  background-color: var(--intent-danger-bg, #fdf3f3);
+  border-color: var(--intent-danger-border, #f1b4b4);
+  color: var(--intent-danger-base, #bb1b1b);
+}
