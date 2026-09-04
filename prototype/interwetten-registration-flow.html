@@ -332,6 +332,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .screen{ background:#fff; }
 #frontpage{ background:var(--bg,#f4f6f9); }
 </style>
+<style>
+#verify .method-item{ margin-bottom:12px; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -500,23 +503,41 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <!-- ============ VERIFY ============ -->
   <div class="screen" id="verify">
-    <div class="appbar"><div class="logo center">interwetten</div><div style="width:40px"></div><button class="icon-x" onclick="go('frontpage')"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+    <div class="header">
+      <div class="header__side"></div>
+      <img class="header__logo" src="assets/brand/interwetten.svg" alt="interwetten">
+      <div class="header__side header__side--right"><button class="header__icon-btn" onclick="go('frontpage')"><img class="header__icon" src="assets/icons/cross-big.svg" alt="Close"></button></div>
+    </div>
     <div class="form-scroll">
       <div class="headline">Verification required</div>
       <p class="sub">For a complete Interwetten account we need the following information about you.</p>
       <div class="vlabel">Verification methods</div>
-      <div class="vrow" onclick="idAustria()">
-        <div class="vico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="2" stroke="#c0392b" stroke-width="1.6"/><path d="M7 10h4M7 13h6" stroke="#c0392b" stroke-width="1.6" stroke-linecap="round"/></svg></div>
-        <div class="vt">ID Austria</div>
-        <svg class="vchev" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="method-item" onclick="idAustria()">
+        <div class="method-item__row">
+          <div class="method-item__logo"><img class="method-item__logo-img" src="assets/verification/idaustria.jpg" alt=""></div>
+          <div class="method-item__body">
+            <span class="method-item__title">ID Austria</span>
+            <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+          </div>
+        </div>
       </div>
-      <div class="vrow" onclick="startPayin('verify')">
-        <div class="vt">Deposit &amp; Verify (PSD2)</div>
-        <svg class="vchev" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="method-item" onclick="startPayin('verify')">
+        <div class="method-item__row">
+          <div class="method-item__logo"></div>
+          <div class="method-item__body">
+            <span class="method-item__title">Deposit &amp; Verify (PSD2)</span>
+            <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+          </div>
+        </div>
       </div>
-      <div class="vrow" onclick="toast('Manual entry — covered later','info')">
-        <div class="vt">Manual entry</div>
-        <svg class="vchev" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="method-item" onclick="toast('Manual entry — covered later','info')">
+        <div class="method-item__row">
+          <div class="method-item__logo"></div>
+          <div class="method-item__body">
+            <span class="method-item__title">Manual entry</span>
+            <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
