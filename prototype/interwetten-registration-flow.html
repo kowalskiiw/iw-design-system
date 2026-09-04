@@ -353,6 +353,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   box-sizing:border-box;
 }
 </style>
+<style>
+.um-item .i{ width:24px; height:24px; flex-shrink:0; }
+.um-item .chev{ width:16px; height:16px; flex-shrink:0; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -929,16 +933,11 @@ function renderUsermenu(){
 }
 function openPayout(){closeUsermenu();go('payoutMethods');$('payoutBalHint').textContent='Available balance: '+euro(state.balance);}
 function item(ic,label,onclick,dis,sub,badge){
-  const icons={bets:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    lock:'<rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.6"/>',
-    deposit:'<path d="M12 4v10M8 10l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    payout:'<path d="M12 20V10M8 14l4-4 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 5h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
-    club:'<path d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5L12 21l-5-2.3 1-5.5-4-3.9 5.5-.8L12 3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>',
-    promo:'<circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
-    warn:'<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'};
-  const badgeHtml=badge?'<span class="badge-unv"><svg viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l5 9H1z"/></svg>Unverified</span>':'';
+  const map={bets:'exclamation',lock:'lock-1',deposit:'settings',payout:'exclamation',club:'exclamation',promo:'switch-off',warn:'exclamation'};
+  const file=map[ic]||'exclamation';
+  const badgeHtml=badge?'<span class="badge badge--unverified"><img class="badge__icon" src="assets/icons/alert.svg" alt="">Unverified</span>':'';
   const subHtml=sub?`<span class="sub">${sub}</span>`:'';
-  return `<div class="um-item${dis?' dis':''}" ${onclick?`onclick="${onclick}"`:''}><svg class="i" viewBox="0 0 24 24" fill="none">${icons[ic]}</svg><span class="t">${label}</span>${badgeHtml}${subHtml}<svg class="chev" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+  return `<div class="um-item${dis?' dis':''}" ${onclick?`onclick="${onclick}"`:''}><img class="i" src="assets/icons/${file}.svg" alt=""><span class="t">${label}</span>${badgeHtml}${subHtml}<img class="chev" src="assets/icons/chevron.svg" alt=""></div>`;
 }
 function logout(){state.registered=false;state.verified=false;state.balance=0;state.slip=[];state.stake=15;syncOdds();updateHeader();closeUsermenu();closeBetslip();go('frontpage');toast('Logged out','info');}
 
