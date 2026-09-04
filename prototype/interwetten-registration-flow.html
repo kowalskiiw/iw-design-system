@@ -321,6 +321,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .g-slot{ display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px; letter-spacing:.5px; text-align:center; }
 .sec:has(.guides){ background:var(--bg,#f4f6f9); }
 </style>
+<style>
+.cats .chip{ flex-shrink:0; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -659,7 +662,8 @@ let toastTimer;
 function toast(msg,type){const el=$('toast');el.className='toast'+(type==='info'?' info':'');el.innerHTML=(type==='info'?'':'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="rgba(255,255,255,.2)"/><path d="M7 12l3.5 3.5L17 8.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')+'<span>'+msg+'</span>';el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3200);}
 
 /* ================= Render frontpage ================= */
-CATS.forEach(c=>{const b=document.createElement('div');b.className='chip';b.innerHTML=ICON[c[1]]+'<span>'+c[0]+'</span>';$('cats').appendChild(b);});
+const CAT_ICON={promos:'promos',today:'calendar',football:'soccer',tennis:'tennis',basketball:'basketball',hockey:'hockey',handball:'handball'};
+CATS.forEach(c=>{const b=document.createElement('button');b.className='chip';b.innerHTML=`<img class="chip__icon" src="assets/sports/${CAT_ICON[c[1]]||'star'}.svg" alt=""><span class="chip__label">${c[0]}</span>`;$('cats').appendChild(b);});
 (function(){const hero=$('hero'),dots=$('dots');[...hero.children].forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===0?' on':'');dots.appendChild(d);});
  hero.addEventListener('scroll',()=>{const a=Math.round(hero.scrollLeft/hero.clientWidth);[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===a));});
  setInterval(()=>{if(!document.hidden){const n=(Math.round(hero.scrollLeft/hero.clientWidth)+1)%hero.children.length;hero.scrollTo({left:hero.clientWidth*n,behavior:'smooth'});}},4500);})();
