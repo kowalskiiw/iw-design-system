@@ -324,6 +324,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <style>
 .cats .chip{ flex-shrink:0; }
 </style>
+<style>
+#register .input{ margin-bottom:16px; }
+</style>
+<style>
+/* flow screens are white; only the home screen keeps the grey backdrop */
+.screen{ background:#fff; }
+#frontpage{ background:var(--bg,#f4f6f9); }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -458,14 +466,25 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
   <!-- ============ REGISTER ============ -->
   <div class="screen" id="register">
-    <div class="appbar"><div class="logo center">interwetten</div><div style="width:40px"></div><button class="icon-x" onclick="go('frontpage')"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+    <div class="header">
+      <div class="header__side"></div>
+      <img class="header__logo" src="assets/brand/interwetten.svg" alt="interwetten">
+      <div class="header__side header__side--right"><button class="header__icon-btn" onclick="go('frontpage')"><img class="header__icon" src="assets/icons/cross-big.svg" alt="Close"></button></div>
+    </div>
     <div class="form-scroll">
       <div class="headline">Create your Interwetten account</div>
       <p class="sub">For a complete Interwetten account we need the following information about you.</p>
-      <div class="field"><label>E-mail address</label><input id="regEmail" type="email" placeholder="max.mustermann@gmx.at"></div>
-      <div class="field"><label>Username</label><input id="regUser" placeholder="kowalski1234"></div>
-      <div class="field">
-        <label>Password</label><input id="regPw" type="password" placeholder="••••••••">
+      <div class="input">
+        <label class="input__label">E-mail address</label>
+        <div class="input__field"><input class="input__control" id="regEmail" type="email" placeholder="max.mustermann@gmx.at"></div>
+      </div>
+      <div class="input">
+        <label class="input__label">Username</label>
+        <div class="input__field"><input class="input__control" id="regUser" placeholder="kowalski1234"></div>
+      </div>
+      <div class="input">
+        <label class="input__label">Password</label>
+        <div class="input__field"><input class="input__control" id="regPw" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"><img class="input__icon" src="assets/icons/eye-closed.svg" alt=""></div>
         <div class="pw-req">
           <div class="h">Minimum requirements:</div>
           <div class="r off" id="pwLen"><svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6" opacity=".3"/><path d="M3.5 6l1.6 1.6L8.5 4.3" stroke="#fff" stroke-width="1.2" fill="none"/></svg>8 to 19 characters</div>
@@ -474,7 +493,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         </div>
       </div>
       <div class="terms"><button class="cbx" id="regTerms" onclick="this.classList.toggle('on')"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>I am at least 18 years old and accept the <u>general terms and conditions (GTC)</u>, the <u>privacy policy</u> and confirm that I am not acting on behalf of a third party.</span></div>
-      <button class="btn-primary" onclick="submitRegister()">Authenticate now</button>
+      <button class="button button--block" onclick="submitRegister()"><span>Authenticate now</span></button>
       <div style="height:16px"></div>
     </div>
   </div>
