@@ -660,12 +660,30 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <div id="umBadge"></div>
       </div>
       <div class="um-sec-h">Account statement</div>
-      <div class="um-card">
-        <div class="um-acct">
-          <div class="top"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M5 20a7 7 0 0114 0" stroke="currentColor" stroke-width="1.6"/></svg><span class="t">Account statement</span><svg class="chev" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="bal"><span>Main credit balance:</span><span id="umBal1">0,00 €</span></div>
-          <div class="bal"><span>Credit under review:</span><span>0,00 €</span></div>
-          <div class="bal tot"><span>Total credit:</span><span id="umBal2">0,00 €</span></div>
+      <div class="account-balance account-balance--balance">
+        <div class="account-balance__top">
+          <div class="account-balance__content">
+            <div class="account-balance__header">
+              <img class="account-balance__icon" src="assets/icons/avatar-1.svg" alt="">
+              <span class="account-balance__title">Account statement</span>
+            </div>
+          </div>
+          <img class="account-balance__chevron" src="assets/icons/chevron.svg" alt="">
+        </div>
+        <div class="account-balance__rows">
+          <div class="account-balance__row">
+            <span class="account-balance__row-label">Main credit balance:</span>
+            <span class="account-balance__row-value" id="umBal1">0,00 &euro;</span>
+          </div>
+          <div class="account-balance__row">
+            <span class="account-balance__row-label">Credit under review:</span>
+            <span class="account-balance__row-value">0,00 &euro;</span>
+          </div>
+          <hr class="account-balance__divider">
+          <div class="account-balance__row account-balance__row--total">
+            <span class="account-balance__row-label">Total credit:</span>
+            <span class="account-balance__row-value" id="umBal2">0,00 &euro;</span>
+          </div>
         </div>
       </div>
       <div class="um-sec-h">My account</div>
