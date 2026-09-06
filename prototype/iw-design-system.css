@@ -1477,6 +1477,62 @@
 
 
 /* =============================================================
+   further-bets.css
+   Further-bets row — IW Design Library (ReDesign 2026)
+   Source: Figma "Furhter-bets" component set (node 1:1526)
+   States: Default · Hover
+
+   A minimal navigation row: a label + right chevron, with a bottom
+   divider. Used to link to secondary bet markets ("Results", etc.).
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/base      → --surface-base      #ffffff
+   field/bg-disabled → --field-bg-disabled #f1f1f1 (divider)
+   content/heading   → --content-heading   #101a28 (label)
+
+   The chevron is a dropped-in asset (assets/icons/chevron.svg), 16px.
+   ============================================================= */
+
+.further-bets {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--surface-base, #ffffff);
+  border-bottom: 1px solid var(--field-bg-disabled, #f1f1f1);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+/* Hover — subtle background tint */
+.further-bets:hover,
+.further-bets--hover {
+  background-color: var(--field-bg-disabled, #f1f1f1);
+}
+
+.further-bets__label {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--content-heading, #101a28);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.further-bets__chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+
+/* =============================================================
    header.css
    Header — IW Design Library (ReDesign 2026)
    Source: Figma "Header" component set (node 1:782)
@@ -2172,6 +2228,70 @@
 
 
 /* =============================================================
+   odds-glass.css
+   Odds (glass) — IW Design Library (ReDesign 2026)
+   Source: Figma "Odds-glass" component set (node 1:977)
+   States: Default · Hover · Selected
+
+   A translucent "glass" odds button meant to sit over a coloured or
+   image background. Default/Hover use white-alpha fills; Selected uses
+   the solid brand yellow.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   intent/brand/bg  → --intent-brand-bg  #ffd200
+   intent/brand/fg  → --intent-brand-fg  #000000
+   surface/base     → --surface-base     #ffffff (text)
+
+   backdrop-filter adds the frosted-glass blur (the "liquid glass" feel);
+   it needs a background behind the button to show. Falls back gracefully
+   to a plain translucent fill where unsupported.
+   ============================================================= */
+
+.odds-glass {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 94px;
+  height: 44px;
+  padding: 12px 0;
+  border-radius: 10px;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+}
+
+.odds-glass__value {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--surface-base, #ffffff);
+}
+
+/* Hover — brighter translucent fill */
+.odds-glass:hover,
+.odds-glass--hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Selected — solid brand yellow, dark text, no blur needed */
+.odds-glass--selected {
+  background-color: var(--intent-brand-bg, #ffd200);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.odds-glass--selected .odds-glass__value {
+  color: var(--intent-brand-fg, #000000);
+}
+
+
+/* =============================================================
    odds-horizontal.css
    Odds (horizontal) — IW Design Library (ReDesign 2026)
    Source: Figma "OddsHorizontal" component set (node 1:625)
@@ -2391,6 +2511,98 @@
 .odds-vertical--locked .odds-vertical__lock {
   color: var(--content-muted, #a2aab6);
   margin-bottom: 4px;
+}
+
+
+/* =============================================================
+   rotator.css
+   Rotator (hero) — IW Design Library (ReDesign 2026)
+   Source: Figma "Rotator" component set (node 1:940)
+
+   A horizontal row of 320x208 hero cards. Each card has a background
+   image, a dark legibility overlay, and bottom-anchored content:
+   a bold-italic title, a subtitle, and two Odds-Glass buttons.
+
+   TOKENS USED (Figma variable → CSS custom property → value)
+   surface/base → --surface-base → #ffffff (text + border)
+
+   REUSE: the two odds buttons are the .odds-glass component. Slide
+   images are dropped-in assets (assets/rotator/*.jpg).
+   ============================================================= */
+
+.rotator {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 4px 0;
+}
+.rotator::-webkit-scrollbar { display: none; }
+
+.rotator__slide {
+  box-sizing: border-box;
+  position: relative;
+  flex-shrink: 0;
+  width: 320px;
+  height: 208px;
+  border: 4px solid var(--surface-base, #ffffff);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.rotator__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark overlay for text legibility */
+.rotator__slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.rotator__content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px;
+}
+
+.rotator__title {
+  font-size: 24px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--surface-base, #ffffff);
+}
+
+.rotator__subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--surface-base, #ffffff);
+}
+
+.rotator__odds {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+/* the two reused .odds-glass buttons fill the row evenly */
+.rotator__odds .odds-glass {
+  flex: 1 0 0;
+  min-width: 0;
+  width: auto;
 }
 
 
