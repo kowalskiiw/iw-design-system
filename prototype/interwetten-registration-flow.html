@@ -364,6 +364,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .um-item__row .t{ flex:1; }
 .um-item .sub{ padding-left:28px; }
 </style>
+<style>
+.further-bets-group{ margin:0 12px; border-radius:16px; overflow:hidden; background:var(--surface-base,#fff); box-shadow:0 1px 3px rgba(16,26,40,0.08); }
+.further-bets-group .further-bets:last-child{ border-bottom:0; }
+.sec:has(.further-bets-group){ background:var(--bg,#f4f6f9); }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -434,10 +439,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         </div>
       </div>
       <div class="sec">
-        <div class="further-bets"><span class="further-bets__label">Results</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
-        <div class="further-bets"><span class="further-bets__label">Odds limit 2.00</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
-        <div class="further-bets"><span class="further-bets__label">Live scores</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
-        <div class="further-bets"><span class="further-bets__label">All live bets</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
+        <div class="further-bets-group">
+          <div class="further-bets"><span class="further-bets__label">Results</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
+          <div class="further-bets"><span class="further-bets__label">Odds limit 2.00</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
+          <div class="further-bets"><span class="further-bets__label">Live scores</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
+          <div class="further-bets"><span class="further-bets__label">All live bets</span><img class="further-bets__chevron" src="assets/icons/chevron.svg" alt=""></div>
+        </div>
       </div>
       <div class="sec">
         <div class="sec-head"><h2>Betting tips</h2><span class="see-all">All guides</span></div>
