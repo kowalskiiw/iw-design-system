@@ -186,7 +186,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .terms u{color:var(--text);font-weight:500}
 .cbx{width:16px;height:16px;border:1px solid #333;border-radius:2px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;background:#fff}
 .cbx.on{background:#232323;border-color:#232323}
-.cbx svg{width:11px;height:11px;color:#fff;display:none}
+.cbx svg{width:14px;height:14px;color:#fff;display:none}
 .cbx.on svg{display:block}
 .btn-primary{width:100%;background:var(--brand);color:#000;font-size:16px;padding:12px 32px;border-radius:42px;font-weight:400}
 .btn-primary:active{transform:scale(.99)}
@@ -386,6 +386,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <style>
 .odds-vertical--locked .odds-vertical__lock{ color:var(--content-muted,#a2aab6); }
 </style>
+<style>
+/* checkbox box was collapsing to ~2px in the flex row — pin it hard */
+.terms .cbx{ box-sizing:border-box !important; width:16px !important; height:16px !important; min-width:16px !important; max-width:16px !important; flex:0 0 16px !important; padding:0 !important; appearance:none !important; -webkit-appearance:none !important; }
+.terms .cbx svg{ width:12px !important; height:12px !important; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -548,7 +553,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           <div class="r off" id="pwNum"><svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/><path d="M3.5 6l1.6 1.6L8.5 4.3" stroke="#fff" stroke-width="1.2" fill="none"/></svg>min. 1 number</div>
         </div>
       </div>
-      <div class="terms"><button class="cbx" id="regTerms" onclick="this.classList.toggle('on')"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>I am at least 18 years old and accept the <u>general terms and conditions (GTC)</u>, the <u>privacy policy</u> and confirm that I am not acting on behalf of a third party.</span></div>
+      <div class="terms"><button class="cbx" id="regTerms" onclick="this.classList.toggle('on')"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span>I am at least 18 years old and accept the <u>general terms and conditions (GTC)</u>, the <u>privacy policy</u> and confirm that I am not acting on behalf of a third party.</span></div>
       <button class="button button--block" onclick="submitRegister()"><span>Authenticate now</span></button>
       <div style="height:16px"></div>
     </div>
