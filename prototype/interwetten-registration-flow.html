@@ -375,6 +375,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .um-item .sub{ padding:0 0 0 28px; margin:0; line-height:16px; }
 .um-item .t{ line-height:20px; }
 </style>
+<style>
+#otherMethods .other-methods__label{ font-size:14px; font-weight:500; color:var(--text,#333); margin-bottom:8px; }
+#otherMethods .other-methods__list{ display:flex; flex-direction:column; gap:8px; }
+</style>
 </head>
 <body>
 <div class="phone">
@@ -572,7 +576,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           </div>
         </div>
       </div>
-      <div class="method-item" onclick="toast('Manual entry — covered later','info')">
+      <div class="method-item" onclick="go('otherMethods')">
         <div class="method-item__row">
           <div class="method-item__logo"></div>
           <div class="method-item__body">
@@ -585,6 +589,66 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   </div>
 
   <!-- ============ PAYIN METHODS ============ -->
+  <div class="screen" id="otherMethods">
+    <div class="header">
+      <div class="header__side"><button class="header__icon-btn" onclick="go('verify')"><img class="header__icon" src="assets/icons/chevron-left.svg" alt="Back"></button></div>
+      <img class="header__logo" src="assets/brand/interwetten.svg" alt="interwetten">
+      <div class="header__side header__side--right"><button class="header__icon-btn" onclick="go('frontpage')"><img class="header__icon" src="assets/icons/cross-big.svg" alt="Close"></button></div>
+    </div>
+    <div class="form-scroll">
+      <div class="headline">Other verification methods</div>
+      <p class="sub">Choose one of the following providers to verify your identity manually.</p>
+      <div class="other-methods__label">Authentification methods</div>
+      <div class="other-methods__list">
+        <div class="method-item" onclick="toast('WebId/Insic — verification flow','info')">
+          <div class="method-item__row">
+            <div class="method-item__logo"></div>
+            <div class="method-item__body">
+              <span class="method-item__title">WebId/Insic</span>
+              <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+            </div>
+          </div>
+        </div>
+        <div class="method-item" onclick="toast('Klarna — verification flow','info')">
+          <div class="method-item__row">
+            <div class="method-item__logo"></div>
+            <div class="method-item__body">
+              <span class="method-item__title">Klarna</span>
+              <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+            </div>
+          </div>
+        </div>
+        <div class="method-item" onclick="toast('Identt/Insic — verification flow','info')">
+          <div class="method-item__row">
+            <div class="method-item__logo"></div>
+            <div class="method-item__body">
+              <span class="method-item__title">Identt/Insic</span>
+              <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+            </div>
+          </div>
+        </div>
+        <div class="method-item" onclick="toast('facephi/Crif — verification flow','info')">
+          <div class="method-item__row">
+            <div class="method-item__logo"></div>
+            <div class="method-item__body">
+              <span class="method-item__title">facephi/Crif</span>
+              <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+            </div>
+          </div>
+        </div>
+        <div class="method-item" onclick="toast('WebID/Crif — verification flow','info')">
+          <div class="method-item__row">
+            <div class="method-item__logo"></div>
+            <div class="method-item__body">
+              <span class="method-item__title">WebID/Crif</span>
+              <span class="method-item__icon"><img class="method-item__chevron" src="assets/icons/chevron.svg" alt=""></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="screen" id="payinMethods">
     <div class="header">
       <div class="header__side"></div>
